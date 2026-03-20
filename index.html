@@ -21,34 +21,34 @@
 
     <!-- Fixed nav menu on top -->
   <!-- Fixed nav menu on top -->
-<header class="fixed top-0 left-0 w-full z-[60] transition-all duration-300 bg-transparent">
+<header class="fixed top-0 left-0 w-full z-[100] transition-all duration-300 bg-transparent">
   <nav class="container mx-auto px-4 py-4 flex items-center justify-between">
-    <!-- Logo / Name on left -->
+    <!-- Logo left -->
     <a href="/" class="text-2xl md:text-3xl font-bold text-[var(--primary-red)] tracking-wider hover:text-white transition-colors">
       The Buoy
     </a>
 
-    <!-- Desktop links – hidden on mobile -->
-    <ul id="mobile-menu" style="display: none;" class="absolute top-full left-0 w-full bg-gray-950/95 backdrop-blur-md flex flex-col items-center gap-8 py-8 md:hidden shadow-2xl border-t border-gray-800">
-  <li><a href="#menu" class="text-gray-200 font-semibold text-xl hover:text-[var(--primary-red)] transition-colors py-2 px-6">View the Menu</a></li>
-  <li><a href="#events" class="text-gray-200 font-semibold text-xl hover:text-[var(--primary-red)] transition-colors py-2 px-6">View all events</a></li>
-  <li><a href="#market" class="text-gray-200 font-semibold text-xl hover:text-[var(--primary-red)] transition-colors py-2 px-6">Seafood Market</a></li>
-  <li><a href="#news" class="text-gray-200 font-semibold text-xl hover:text-[var(--primary-red)] transition-colors py-2 px-6">See more news</a></li>
-  <li><a href="#jobs" class="text-gray-200 font-semibold text-xl hover:text-[var(--primary-red)] transition-colors py-2 px-6">See jobs</a></li>
-</ul>
+    <!-- Desktop links (hidden below md) -->
+    <ul class="hidden md:flex justify-center items-center gap-6 lg:gap-10">
+      <li><a href="#menu" class="text-gray-200 font-semibold text-lg hover:text-[var(--primary-red)] transition-colors">View the Menu</a></li>
+      <li><a href="#events" class="text-gray-200 font-semibold text-lg hover:text-[var(--primary-red)] transition-colors">View all events</a></li>
+      <li><a href="#market" class="text-gray-200 font-semibold text-lg hover:text-[var(--primary-red)] transition-colors">Seafood Market</a></li>
+      <li><a href="#news" class="text-gray-200 font-semibold text-lg hover:text-[var(--primary-red)] transition-colors">See more news</a></li>
+      <li><a href="#jobs" class="text-gray-200 font-semibold text-lg hover:text-[var(--primary-red)] transition-colors">See jobs</a></li>
+    </ul>
 
-    <!-- Hamburger button – visible only on mobile -->
-    <button id="hamburger-btn" class="md:hidden text-gray-200 text-3xl focus:outline-none hover:text-[var(--primary-red)] transition-colors" aria-label="Toggle menu">
+    <!-- Hamburger – only mobile -->
+    <button id="hamburger-btn" class="md:hidden text-gray-200 text-3xl focus:outline-none hover:text-[var(--primary-red)] transition-colors z-[101]" aria-label="Toggle menu">
       <i class="fas fa-bars"></i>
     </button>
 
-    <!-- Mobile menu dropdown – hidden by default -->
-    <ul id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-gray-950/95 backdrop-blur-md flex flex-col items-center gap-8 py-8 md:hidden shadow-2xl border-t border-gray-800">
-      <li><a href="#menu" class="text-gray-200 font-semibold text-xl hover:text-[var(--primary-red)] transition-colors py-2 px-6">View the Menu</a></li>
-      <li><a href="#events" class="text-gray-200 font-semibold text-xl hover:text-[var(--primary-red)] transition-colors py-2 px-6">View all events</a></li>
-      <li><a href="#market" class="text-gray-200 font-semibold text-xl hover:text-[var(--primary-red)] transition-colors py-2 px-6">Seafood Market</a></li>
-      <li><a href="#news" class="text-gray-200 font-semibold text-xl hover:text-[var(--primary-red)] transition-colors py-2 px-6">See more news</a></li>
-      <li><a href="#jobs" class="text-gray-200 font-semibold text-xl hover:text-[var(--primary-red)] transition-colors py-2 px-6">See jobs</a></li>
+    <!-- Mobile menu – force high z-index, hidden initially -->
+    <ul id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-gray-950/95 backdrop-blur-md flex flex-col items-center gap-6 py-8 md:hidden shadow-2xl border-t border-gray-800 z-[100]">
+      <li><a href="#menu" class="text-gray-200 font-semibold text-xl hover:text-[var(--primary-red)] transition-colors py-3 px-8 w-full text-center">View the Menu</a></li>
+      <li><a href="#events" class="text-gray-200 font-semibold text-xl hover:text-[var(--primary-red)] transition-colors py-3 px-8 w-full text-center">View all events</a></li>
+      <li><a href="#market" class="text-gray-200 font-semibold text-xl hover:text-[var(--primary-red)] transition-colors py-3 px-8 w-full text-center">Seafood Market</a></li>
+      <li><a href="#news" class="text-gray-200 font-semibold text-xl hover:text-[var(--primary-red)] transition-colors py-3 px-8 w-full text-center">See more news</a></li>
+      <li><a href="#jobs" class="text-gray-200 font-semibold text-xl hover:text-[var(--primary-red)] transition-colors py-3 px-8 w-full text-center">See jobs</a></li>
     </ul>
   </nav>
 </header>
