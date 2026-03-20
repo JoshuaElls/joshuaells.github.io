@@ -32,7 +32,7 @@
         </nav>
     </header>
 
-    <!-- Hero – now relative so JS can push it up -->
+    <!-- Hero – relative so JS can push it up -->
     <section class="hero-wrapper relative h-screen w-full z-10 overflow-hidden">
         <!-- Video + overlay -->
         <div class="relative w-full h-full overflow-hidden">
@@ -78,10 +78,10 @@
     <!-- Scrolling content – starts after spacer -->
     <div class="relative z-20">
 
-        <!-- Main content – offers and below push hero up -->
-        <main class="w-full !bg-gray-950 relative z-10">
+        <!-- Main content – forced dark background -->
+        <main class="w-full bg-gray-950 !bg-gray-950 relative z-10">
             <div class="max-w-7xl mx-auto px-4 py-12">
-                <!-- Offers section – added bg-gray-950 to make background visible -->
+                <!-- Offers section – explicit dark background -->
                 <section id="offers" class="py-12 md:py-16 bg-gray-950">
                     <div class="offers-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         <div class="offer-card bg-slate-800 rounded-lg shadow-md overflow-hidden transition-all duration-400 hover:shadow-xl hover:-translate-y-3">
@@ -304,7 +304,7 @@
                 </section>
 
                 <!-- Careers section -->
-                <section id="careers" class="py-12 md:py-18">
+                <section id="careers" class="py-12 md:py-18 bg-gray-950">
                     <h2 class="text-3xl md:text-4xl font-bold uppercase tracking-wide text-center mb-4 text-gray-100">Get in on the action</h2>
                     <h3 class="text-2xl font-bold uppercase tracking-wide text-center mb-8 text-gray-100">We want you on our team</h3>
                     <p class="text-base md:text-lg leading-relaxed text-center mb-12 text-gray-200">Job opportunities description.</p>
