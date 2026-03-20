@@ -44,7 +44,7 @@ window.addEventListener('scroll', () => {
   const introTitle    = document.getElementById('intro-title-reveal');
   const fadeOverlay   = document.getElementById('hero-dark-fade');
 
-  if (!hero || !intro || !fadeOverlay) return;
+  if (!hero || !fadeOverlay) return;
 
   const introRect      = intro.getBoundingClientRect();
   const viewportHeight = window.innerHeight;
