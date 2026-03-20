@@ -1,3 +1,5 @@
+console.log('Alpine loaded?', !!window.Alpine);
+
 // Force video autoplay after load (helps with strict policies)
 document.addEventListener('DOMContentLoaded', () => {
   const video = document.querySelector('video');
