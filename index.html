@@ -454,5 +454,12 @@
         offset: 120
       });
     </script>
+    <!-- Alpine.js - load at end of body for reliable init -->
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<script>
+  document.addEventListener('alpine:init', () => {
+    console.log('Alpine initialized successfully');
+  });
+</script>
 </body>
 </html>
