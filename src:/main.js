@@ -13,40 +13,35 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// Single scroll listener for parallax + debug (unchanged)
 window.addEventListener('scroll', () => {
+  const hero = document.querySelector('.hero-wrapper');
+  const fadeOverlay = document.getElementById('hero-dark-fade');
+  const heroTitle = document.getElementById('hero-title-group');
+
+  if (!hero || !fadeOverlay) return;
+
   const scrollPos = window.scrollY;
-  
-  // Toggle scrolled class
-  const shouldBeScrolled = scrollPos > 20;
-  document.body.classList.toggle('scrolled', shouldBeScrolled);
-  
-  // Debug: log when class changes
-  console.log('Scrolled class:', document.body.classList.contains('scrolled'), 'ScrollY:', scrollPos);
+  const vh = window.innerHeight;
+  const offersStart = document.querySelector('#offers')?.getBoundingClientRect().top || vh; // fallback
 
-  // Apply transform directly to hero-bg (video) – your commented code
-  /*
-  const heroBg = document.querySelector('.hero-bg');
-  if (heroBg) {
-    const slideAmount = Math.min(scrollPos * 0.2, 180);  // max 180px up
-    heroBg.style.transform = `translateY(-${slideAmount}px) scale(1.08)`;
-    console.log('Applied transform:', heroBg.style.transform);
+  // Progress: 0 at top → 1 when offers section reaches ~top of viewport
+  let progress = Math.max(0, Math.min(1, (scrollPos) / (vh * 0.8))); // tune 0.8 for timing
+
+  // 1. Push hero up (simulates being "pushed" by content below)
+  const maxPush = vh * 0.4; // max ~40% of screen
+  const pushAmount = progress * maxPush;
+  hero.style.transform = `translateY(-${pushAmount}px)`;
+
+  // 2. Stronger black fade as it pushes up
+  const fadeOpacity = Math.min(0.92, progress * 1.4); // goes almost fully black
+  fadeOverlay.style.opacity = fadeOpacity;
+
+  // 3. Optional: fade out title faster for dramatic reveal
+  if (heroTitle) {
+    heroTitle.style.opacity = Math.max(0, 1 - progress * 1.8);
+    heroTitle.style.transform = `translateY(-${progress * 120}px)`; // extra title lift
   }
-  */
 });
-
-// Hero push-up + fade + title handover logic (improved timing & push feel)
-window.addEventListener('scroll', () => {
-  const hero          = document.querySelector('.hero-wrapper');
-  const intro         = document.querySelector('#hero-reveal-intro');
-  const heroTitle     = document.getElementById('hero-title-group');
-  const introTitle    = document.getElementById('intro-title-reveal');
-  const fadeOverlay   = document.getElementById('hero-dark-fade');
-
-  if (!hero || !intro || !fadeOverlay) return;
-
-  const introRect      = intro.getBoundingClientRect();
-  const viewportHeight = window.innerHeight;
 
   // ─────────────────────────────────────────────────────────────
   // TUNING SECTION ─ adjust these numbers to control timing & feel
