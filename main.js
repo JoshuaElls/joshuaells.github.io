@@ -43,28 +43,28 @@ window.addEventListener('scroll', () => {
   const heroTitle = document.getElementById('hero-title-group');
 
   if (!hero || !fadeOverlay) {
-    console.log('Hero elements missing — skipping');
+    console.log('Hero or fade overlay missing — skipping');
     return;
   }
 
   const scrollY = window.scrollY;
   const vh = window.innerHeight;
 
-  // Progress: 0 at top → 1 after scrolling ~80% of viewport height
+  // Simple progress: 0 at top → 1 after scrolling ~80% of viewport height
   let progress = scrollY / (vh * 0.8);
   progress = Math.max(0, Math.min(1, progress));
 
-  // Debug
-  console.log('Hero progress:', progress.toFixed(2), 'scrollY:', scrollY);
+  // Debug to confirm it's running (you'll see this in console when scrolling)
+  console.log('Hero push running! Progress:', progress.toFixed(2), 'ScrollY:', scrollY);
 
-  // Push entire hero wrapper up
-  const maxPush = vh * 0.45; // adjust 0.45 to control how far it moves (higher = more push)
+  // 1. Push entire hero wrapper up
+  const maxPush = vh * 0.45;  // adjust 0.45 to control movement distance
   hero.style.transform = `translateY(-${progress * maxPush}px)`;
 
-  // Dark fade
-  fadeOverlay.style.opacity = progress * 0.9; // adjust 0.9 for how dark it gets
+  // 2. Dark fade
+  fadeOverlay.style.opacity = progress * 0.85;  // adjust 0.85 for fade strength
 
-  // Hero title fade + lift
+  // 3. Hero title fade + lift
   if (heroTitle) {
     heroTitle.style.opacity = 1 - progress * 1.6;
     heroTitle.style.transform = `translateY(-${progress * 120}px)`;
