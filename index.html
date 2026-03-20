@@ -29,13 +29,13 @@
     </a>
 
     <!-- Desktop links – hidden on mobile -->
-    <ul id="desktop-menu" class="hidden md:flex justify-center items-center gap-6 lg:gap-10">
-      <li><a href="#menu" class="text-gray-200 font-semibold text-lg hover:text-[var(--primary-red)] transition-colors">View the Menu</a></li>
-      <li><a href="#events" class="text-gray-200 font-semibold text-lg hover:text-[var(--primary-red)] transition-colors">View all events</a></li>
-      <li><a href="#market" class="text-gray-200 font-semibold text-lg hover:text-[var(--primary-red)] transition-colors">Seafood Market</a></li>
-      <li><a href="#news" class="text-gray-200 font-semibold text-lg hover:text-[var(--primary-red)] transition-colors">See more news</a></li>
-      <li><a href="#jobs" class="text-gray-200 font-semibold text-lg hover:text-[var(--primary-red)] transition-colors">See jobs</a></li>
-    </ul>
+    <ul id="mobile-menu" style="display: none;" class="absolute top-full left-0 w-full bg-gray-950/95 backdrop-blur-md flex flex-col items-center gap-8 py-8 md:hidden shadow-2xl border-t border-gray-800">
+  <li><a href="#menu" class="text-gray-200 font-semibold text-xl hover:text-[var(--primary-red)] transition-colors py-2 px-6">View the Menu</a></li>
+  <li><a href="#events" class="text-gray-200 font-semibold text-xl hover:text-[var(--primary-red)] transition-colors py-2 px-6">View all events</a></li>
+  <li><a href="#market" class="text-gray-200 font-semibold text-xl hover:text-[var(--primary-red)] transition-colors py-2 px-6">Seafood Market</a></li>
+  <li><a href="#news" class="text-gray-200 font-semibold text-xl hover:text-[var(--primary-red)] transition-colors py-2 px-6">See more news</a></li>
+  <li><a href="#jobs" class="text-gray-200 font-semibold text-xl hover:text-[var(--primary-red)] transition-colors py-2 px-6">See jobs</a></li>
+</ul>
 
     <!-- Hamburger button – visible only on mobile -->
     <button id="hamburger-btn" class="md:hidden text-gray-200 text-3xl focus:outline-none hover:text-[var(--primary-red)] transition-colors" aria-label="Toggle menu">
@@ -449,55 +449,56 @@
     console.log('Alpine initialized successfully');
   });
 </script>
-   <!-- Vanilla JS hamburger toggle with debug logs -->
+   <!-- Vanilla JS hamburger toggle - using style.display for reliability -->
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM fully loaded - checking for hamburger elements');
+    console.log('DOM loaded - setting up hamburger toggle');
 
     const hamburgerBtn = document.getElementById('hamburger-btn');
     const mobileMenu = document.getElementById('mobile-menu');
 
-    console.log('Hamburger button found?', !!hamburgerBtn);
-    console.log('Mobile menu found?', !!mobileMenu);
-
     if (hamburgerBtn && mobileMenu) {
       const icon = hamburgerBtn.querySelector('i');
-      console.log('Icon found in button?', !!icon);
 
       hamburgerBtn.addEventListener('click', () => {
-        console.log('Hamburger clicked - toggling menu');
-        mobileMenu.classList.toggle('hidden');
-        icon.classList.toggle('fa-bars');
-        icon.classList.toggle('fa-times');
+        console.log('Hamburger clicked');
+        if (mobileMenu.style.display === 'none' || mobileMenu.style.display === '') {
+          mobileMenu.style.display = 'flex';
+          icon.classList.remove('fa-bars');
+          icon.classList.add('fa-times');
+        } else {
+          mobileMenu.style.display = 'none';
+          icon.classList.remove('fa-times');
+          icon.classList.add('fa-bars');
+        }
       });
 
       // Close on link click
       mobileMenu.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
           console.log('Link clicked - closing menu');
-          mobileMenu.classList.add('hidden');
-          icon.classList.add('fa-bars');
+          mobileMenu.style.display = 'none';
           icon.classList.remove('fa-times');
+          icon.classList.add('fa-bars');
         });
       });
 
       // Close on outside click
       document.addEventListener('click', (e) => {
         if (!hamburgerBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
-          console.log('Clicked outside - closing menu');
-          mobileMenu.classList.add('hidden');
-          icon.classList.add('fa-bars');
+          console.log('Outside click - closing menu');
+          mobileMenu.style.display = 'none';
           icon.classList.remove('fa-times');
+          icon.classList.add('fa-bars');
         }
       });
 
-      console.log('Event listeners added successfully');
+      console.log('Toggle listeners added');
     } else {
-      console.error('Hamburger elements NOT found - check IDs in HTML');
+      console.error('Hamburger elements not found');
     }
   });
 </script>
-    html
 
 <script>
   // Quick test button (remove after testing)
