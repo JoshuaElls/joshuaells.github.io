@@ -13,33 +13,40 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+// Single scroll listener for parallax + debug (unchanged)
 window.addEventListener('scroll', () => {
-  const hero        = document.querySelector('.hero-wrapper');
-  const fadeOverlay = document.getElementById('hero-dark-fade');
-  const titleGroup  = document.getElementById('hero-title-group');
+  const scrollPos = window.scrollY;
+  
+  // Toggle scrolled class
+  const shouldBeScrolled = scrollPos > 20;
+  document.body.classList.toggle('scrolled', shouldBeScrolled);
+  
+  // Debug: log when class changes
+  console.log('Scrolled class:', document.body.classList.contains('scrolled'), 'ScrollY:', scrollPos);
 
-  if (!hero || !fadeOverlay) return;
-
-  const scrollY = window.scrollY;
-  const vh = window.innerHeight;
-
-  // How far we've scrolled relative to one viewport height
-  let progress = scrollY / (vh * 0.85);           // 0.85 = effect ends ~85% down first screen
-  progress = Math.max(0, Math.min(1, progress));
-
-  // Push hero upward (creates "being pushed by content" illusion)
-  const maxPush = vh * 0.45;                      // max ~45vh upward movement
-  hero.style.transform = `translateY(-${progress * maxPush}px)`;
-
-  // Fade to black
-  fadeOverlay.style.opacity = Math.min(0.92, progress * 1.35);  // strong fade
-
-  // Optional: fade out & lift title
-  if (titleGroup) {
-    titleGroup.style.opacity = 1 - progress * 1.7;
-    titleGroup.style.transform = `translateY(-${progress * 120}px)`;
+  // Apply transform directly to hero-bg (video) – your commented code
+  /*
+  const heroBg = document.querySelector('.hero-bg');
+  if (heroBg) {
+    const slideAmount = Math.min(scrollPos * 0.2, 180);  // max 180px up
+    heroBg.style.transform = `translateY(-${slideAmount}px) scale(1.08)`;
+    console.log('Applied transform:', heroBg.style.transform);
   }
+  */
 });
+
+// Hero push-up + fade + title handover logic (improved timing & push feel)
+window.addEventListener('scroll', () => {
+  const hero          = document.querySelector('.hero-wrapper');
+  const intro         = document.querySelector('#hero-reveal-intro');
+  const heroTitle     = document.getElementById('hero-title-group');
+  const introTitle    = document.getElementById('intro-title-reveal');
+  const fadeOverlay   = document.getElementById('hero-dark-fade');
+
+  if (!hero || !intro || !fadeOverlay) return;
+
+  const introRect      = intro.getBoundingClientRect();
+  const viewportHeight = window.innerHeight;
 
   // ─────────────────────────────────────────────────────────────
   // TUNING SECTION ─ adjust these numbers to control timing & feel
