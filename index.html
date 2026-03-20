@@ -497,5 +497,29 @@
     }
   });
 </script>
+    html
+
+<script>
+  // Quick test button (remove after testing)
+  console.log('Quick test: trying manual toggle');
+  const testBtn = document.createElement('button');
+  testBtn.textContent = 'Test Toggle (remove me)';
+  testBtn.style.position = 'fixed';
+  testBtn.style.bottom = '20px';
+  testBtn.style.right = '20px';
+  testBtn.style.zIndex = '1000';
+  testBtn.style.padding = '10px';
+  testBtn.style.background = 'red';
+  testBtn.style.color = 'white';
+  document.body.appendChild(testBtn);
+
+  testBtn.addEventListener('click', () => {
+    const menu = document.getElementById('mobile-menu');
+    if (menu) {
+      menu.classList.toggle('hidden');
+      console.log('Manual toggle worked!');
+    }
+  });
+</script>
 </body>
 </html>
