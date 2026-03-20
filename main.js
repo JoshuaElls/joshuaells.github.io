@@ -1,6 +1,9 @@
-import Alpine from 'alpinejs';
+import 'https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js';
+
 window.Alpine = Alpine;
 Alpine.start();
+
+// ... your DOMContentLoaded listener, scroll listeners, etc.
 
 // Force video autoplay after load (helps with strict policies)
 document.addEventListener('DOMContentLoaded', () => {
