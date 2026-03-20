@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Buoy</title>
+
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="57x57" href="assets/images/mainpg/bfav.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="assets/images/mainpg/bfav.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="assets/images/mainpg/bfav.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="assets/images/mainpg/bfav.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="assets/images/mainpg/bfav.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="assets/images/mainpg/bfav.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="assets/images/mainpg/bfav.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="assets/images/mainpg/bfav.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicons/ttr.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/images/mainpg/bfav.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/mainpg/bfav.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="assets/images/mainpg/bfav.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/mainpg/bfav.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="assets/images/mainpg/bfav.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Volkhov:400i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link href="assets/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/lib/animate.css/animate.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="assets/lib/et-line-font/et-line-font.css" rel="stylesheet">
+  <link href="assets/lib/flexslider/flexslider.css" rel="stylesheet">
+  <link href="assets/lib/owl.carousel/dist/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="assets/lib/owl.carousel/dist/assets/owl.theme.default.min.css" rel="stylesheet">
+  <link href="assets/lib/magnific-popup/dist/magnific-popup.css" rel="stylesheet">
+  <link href="assets/lib/simple-text-rotator/simpletextrotator.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link id="color-scheme" href="assets/css/colors/default.css" rel="stylesheet">
+
+  <!-- Slick Slider CSS (required for the gallery to work) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css" />
+
+  <style>
+    /* Hero section fixes */
+    .home-section.home-full-height,
+    .home-section.home-full-height > .titan-caption {
+      height: 100vh !important;
+      min-height: 100vh !important;
+    }
+
+    .titan-caption {
+      display: table !important;
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    .titan-caption .caption-content {
+      display: table-cell !important;
+      vertical-align: middle !important;
+      text-align: center !important;
+      width: 100% !important;
+      padding: 0 15px !important;
+    }
+
+    .home-section.home-full-height {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+
+    /* Promo Cards - dark elegant style */
+    .bg-dark { background: #000 !important; }
+
+    .promo-card {
+      background: transparent;
+      color: #fff;
+      font-family: 'Oswald', sans-serif;
+      transition: transform 0.3s ease;
+    }
+
+    .promo-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .card-image-wrapper {
+      position: relative;
+      margin-bottom: 20px;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+
+    .card-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      aspect-ratio: 1 / 1;
+    }
+
+    .card-overlay-text {
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      pointer-events: none;
+    }
+
+    .card-main-title {
+      font-size: 3.2rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin: 0;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+      line-height: 1.1;
+    }
+
+    .card-main-title::after {
+      content: "";
+      display: block;
+      width: 120px;
+      height: 4px;
+      background: linear-gradient(to right, transparent, #c8102e, transparent);
+      margin: 8px auto 0;
+      border-radius: 50%;
+    }
+
+    .card-subtitle {
+      font-size: 1.3rem;
+      margin: 0 0 25px;
+      color: #ddd;
+      line-height: 1.4;
+    }
+
+    .promo-btn {
+      font-size: 1.1rem;
+      padding: 12px 40px;
+      border: 2px solid #fff;
+      color: #fff;
+      background: transparent;
+      transition: all 0.3s;
+      min-width: 220px;
+    }
+
+    .promo-btn:hover {
+      background: #c8102e;
+      border-color: #c8102e;
+      color: #fff;
+    }
+
+    @media (max-width: 767px) {
+      .card-main-title { font-size: 2.4rem; }
+      .card-subtitle { font-size: 1.1rem; }
+      .promo-btn { min-width: 180px; padding: 10px 30px; }
+    }
+
+    /* Extra for headings */
+    h2.module-title-A.font-alt,
+    h2.module-title.font-alt {
+      text-align: center !important;
+      margin: 0 auto 20px auto !important;
+    }
+
+    /* Small paragraph spacing fix */
+    p { margin-bottom: 1em; }
+
+    /* Dark red background contrast fixes for home-buttons */
+    #home-buttons {
+      background-color: #8B0000 !important;
+      color: white !important;
+    }
+
+    #home-buttons .promo-card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    #home-buttons .card-subtitle,
+    #home-buttons .card-main-title {
+      color: white !important;
+    }
+
+    #home-buttons .promo-btn {
+      border-color: white;
+      color: white;
+    }
+
+    #home-buttons .promo-btn:hover {
+      background: white;
+      color: #8B0000;
+    }
+
+    /* Gallery section styling */
+    .gallery-section-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .slick-prev, .slick-next {
+      font-size: 0;
+      line-height: 0;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      display: block;
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      cursor: pointer;
+      color: white;
+      border: none;
+      outline: none;
+      background: rgba(0,0,0,0.5);
+      border-radius: 50%;
+      z-index: 10;
+    }
+
+    .slick-prev {
+      left: 10px;
+    }
+
+    .slick-next {
+      right: 10px;
+    }
+
+    .slick-dots {
+      text-align: center;
+      padding: 20px 0 0;
+    }
+
+    .slick-dots li button:before {
+      color: white;
+      font-size: 12px;
+    }
+
+    .slick-dots li.slick-active button:before {
+      color: #c8102e;
+    }
+  </style>
+</head>
+
+<body data-spy="scroll" data-target=".onpage-navigation" data-offset="60">
+  <a name="gotop"></a>
+  <main>
+    <div class="page-loader">
+      <div class="loader">Loading...</div>
+    </div>
+
+    <nav class="navbar navbar-custom navbar-fixed-top navbar-transparent" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#custom-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#gotop">The Buoy</a>
+        </div>
+        <div class="collapse navbar-collapse" id="custom-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown"><a class="dropdown-toggle" href="#gotop" data-toggle="dropdown">Home</a></li>
+            <li class="dropdown"><a class="dropdown-toggle" href="#OurMenu" data-toggle="dropdown">Our Menu</a></li>
+            <li class="dropdown"><a class="dropdown-toggle" href="#team" data-toggle="dropdown">Meet the Leaders</a></li>
+            <li class="dropdown"><a class="dropdown-toggle" href="#contact" data-toggle="dropdown">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="home-section home-parallax home-fade home-full-height bg-dark-60 agency-page-header" id="home" data-background="assets/images/mainpg/BouyMain.jpg">
+      <div class="titan-caption">
+        <div class="caption-content">
+          <div class="font-alt mb-30 titan-title-size-1" style="font-weight: 400; line-height: 1.05; letter-spacing: -3px; text-align: center;">
+            <div style="font-size: 5.8rem;">Tie one on at</div>
+            <div style="font-size: 10rem; font-weight: 800; color: #c8102e; margin-top: 1.8rem;">The Buoy</div>
+          </div>
+          <div class="font-alt mb-40 titan-title-size-3" style="font-size: 6rem; line-height: 1.15; letter-spacing: -1.5px;">
+            <span class="rotate" style="font-weight: 400;">Good Friends | Great Food | Best Chefs</span>
+          </div>
+          <a class="btn btn-d btn-circle"
+             href="https://www.wimpysseafoodcafe.com/menu"
+             target="_blank" rel="noopener noreferrer"
+             style="font-size: 3rem; font-weight: 900; padding: 1.2rem 3rem; min-width: 280px;">
+            Our Menu
+          </a>
+          <div class="text-center" style="margin-top: 30px;">
+            <a class="resy-fake-btn"
+               href="#contact"
+               style="display: inline-block; font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 2.8rem; font-weight: bold; color: white; background: linear-gradient(135deg, #e63946, #d00000); padding: 1.4rem 3.5rem; border-radius: 60px; text-transform: uppercase; letter-spacing: 1.5px; text-decoration: none; box-shadow: 0 8px 25px rgba(230, 57, 70, 0.5);">
+              Book Now
+            </a>
+            <div style="margin-top: 8px; font-size: 1.1rem; color: #ccc;">
+              powered by <span style="color: #e63946; font-weight: bold;">resy</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="main">
+
+      <!-- Features / Icons -->
+      <section class="module">
+        <div class="container">
+          <div class="row multi-columns-row">
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="features-item">
+                <div class="features-icon"><span class="icon-anchor"></span></div>
+                <h3 class="features-title font-alt">Captained By 2 future Michelin star chefs</h3>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="features-item">
+                <div class="features-icon"><span class="icon-compass"></span></div>
+                <h3 class="features-title font-alt">Anything you eat was swimming (or mollosking?) within 24 hours</h3>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="features-item">
+                <div class="features-icon"><span class="icon-happy"></span></div>
+                <h3 class="features-title font-alt">If you don't like our waitstaff... you're wrong</h3>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="features-item">
+                <div class="features-icon"><span class="icon-map-pin"></span></div>
+                <h3 class="features-title font-alt">All food available for <a href="https://www.wimpysseafoodcafe.com/menu" style="text-decoration: underline;">delivery</a></h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About The Buoy -->
+      <section class="module pt-0 pb-0" id="about">
+        <div class="row position-relative m-0">
+          <div class="col-xs-12 col-md-6 side-image" data-background="assets/images/mainpg/Fishdot.jpg"></div>
+          <div class="col-xs-12 col-md-6 col-md-offset-6 side-image-text">
+            <div class="row">
+              <div class="col-sm-12">
+                <a name="about_us"></a>
+                <h2 class="module-title font-alt text-center">About The Buoy</h2>
+                <p></p>
+                <div class="module-subtitle font-serif">
+                  <p>The Buoy is Jacksonville’s newest coastal-inspired eatery, drawing from the St. Johns River and Atlantic vibes that define our city.</p>
+                  <p>We focus on fresh, local seafood—grilled shrimp, oysters on the half shell, fish tacos, Lowcountry boils, and chef’s daily catches—served alongside craft cocktails, local beers, and a phenomenal wine list. The atmosphere is relaxed and nautical, blending old Florida charm with a modern touch.</p>
+                  <p>Whether you're fresh off the water, gathering with friends, or just in the mood for great coastal flavors, <strong>The Buoy</strong> is your go-to spot for quality food, friendly service, and good times.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Promo Cards - dark red -->
+      <section class="module" id="home-buttons" style="padding: 80px 0 60px; background-color: #8B0000;">
+        <div class="container">
+          <div class="row multi-columns-row">
+            <div class="col-md-4 col-sm-6 col-xs-12 mb-50">
+              <div class="promo-card text-center">
+                <div class="card-image-wrapper">
+                  <img src="assets/images/mainpg/healthyfish.jpg"
+                       alt="Menu" class="img-responsive card-img" loading="lazy">
+                  <div class="card-overlay-text">
+                    <h2 class="card-main-title">Menu</h2>
+                  </div>
+                </div>
+                <p class="card-subtitle">PROPER SOUTHERN FAIRE</p>
+                <a href="/menu" class="btn promo-btn">VIEW MENU</a>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12 mb-50">
+              <div class="promo-card text-center">
+                <div class="card-image-wrapper">
+                  <img src="assets/images/mainpg/MintJ.jpg"
+                       alt="Drinks" class="img-responsive card-img" loading="lazy">
+                  <div class="card-overlay-text">
+                    <h2 class="card-main-title">Our Drinks</h2>
+                  </div>
+                </div>
+                <p class="card-subtitle">TIE ONE ON</p>
+                <a href="/gift-cards" class="btn promo-btn">PURCHASE GIFT CARDS</a>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12 mb-50">
+              <div class="promo-card text-center">
+                <div class="card-image-wrapper">
+                  <img src="assets/images/mainpg/PeepEat.webp"
+                       alt="Private Events" class="img-responsive card-img" loading="lazy">
+                  <div class="card-overlay-text">
+                    <h2 class="card-main-title">GROUP RESERVATIONS</h2>
+                  </div>
+                </div>
+                <p class="card-subtitle">BRING YOUR TEAM</p>
+                <a href="#contact" class="btn promo-btn">PRIVATE EVENTS</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Our Specialties -->
+      <section class="module" id="specialties">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+              <h2 class="module-title-A font-alt">Our Specialties</h2>
+              <a name="specialties"></a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="alt-features-item">
+                <div class="alt-features-icon"><i class="fas fa-fish"></i></div>
+                <h3 class="alt-features-title font-alt">Fresh Catch of the Day</h3>
+                <p>Daily boat-to-table selections grilled, blackened, or fried to perfection.</p>
+              </div>
+              <div class="alt-features-item">
+                <div class="alt-features-icon"><i class="fas fa-shrimp"></i></div>
+                <h3 class="alt-features-title font-alt">Grilled Shrimp & Lowcountry Boils</h3>
+                <p>Juicy Atlantic shrimp, hearty boils with sausage, corn, and potatoes.</p>
+              </div>
+              <div class="alt-features-item">
+                <div class="alt-features-icon"><i class="fas fa-circle"></i></div>
+                <h3 class="alt-features-title font-alt">Oysters on the Half Shell</h3>
+                <p>Fresh local oysters, raw or chargrilled with signature toppings.</p>
+              </div>
+              <div class="alt-features-item">
+                <div class="alt-features-icon"><i class="fas fa-utensils"></i></div>
+                <h3 class="alt-features-title font-alt">Fish Tacos & Coastal Classics</h3>
+                <p>Crispy or grilled fish tacos, po'boys, and Southern favorites.</p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="alt-features-item">
+                <div class="alt-features-icon"><i class="fas fa-cocktail"></i></div>
+                <h3 class="alt-features-title font-alt">Craft Cocktails</h3>
+                <p>Signature drinks with fresh citrus, tropical twists, and local spirits.</p>
+              </div>
+              <div class="alt-features-item">
+                <div class="alt-features-icon"><i class="fas fa-beer-mug-empty"></i></div>
+                <h3 class="alt-features-title font-alt">Local Beers & Wines</h3>
+                <p>Florida craft brews, coastal wines, and pairings for every dish.</p>
+              </div>
+              <div class="alt-features-item">
+                <div class="alt-features-icon"><i class="fas fa-leaf"></i></div>
+                <h3 class="alt-features-title font-alt">Seasonal & Sustainable</h3>
+                <p>Committed to local, responsibly sourced seafood and ingredients.</p>
+              </div>
+              <div class="alt-features-item">
+                <div class="alt-features-icon"><i class="fas fa-heart"></i></div>
+                <h3 class="alt-features-title font-alt">Made with Coastal Love</h3>
+                <p>Every plate celebrates Jacksonville's river-to-ocean flavors.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- NEW GALLERY SECTION ADDED HERE -->
+      <section id="gallery-section" class="module bg-dark">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12 text-center">
+              <h2 class="module-title font-alt">Gallery</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <!-- Slick Slider Gallery -->
+              <div class="slick-slider" dir="ltr">
+                <!-- Slide 1 -->
+                <div>
+                  <img src="assets/images/mainpg/Southern1.jpg" 
+                       alt="Entree" class="img-responsive" style="width: 100%; border-radius: 8px;">
+                </div>
+                <!-- Slide 2 -->
+                <div>
+                  <img src="assets/images/mainpg/southern3.jpg" 
+                       alt="Spread of menu items" class="img-responsive" style="width: 100%; border-radius: 8px;">
+                </div>
+                <!-- Slide 3 -->
+                <div>
+                  <img src="assets/images/mainpg/southern4.jpg" 
+                       alt="Exterior view at night" class="img-responsive" style="width:50%; border-radius: 8px;">
+                </div>
+                <!-- Slide 4 -->
+                <div>
+                  <img src="assets/images/mainpg/Southern4.jpeg" 
+                       alt="Purple cocktail beverage" class="img-responsive" style="width: 50%; border-radius: 8px;">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Callout -->
+      <section class="module-small bg-dark">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-6 col-md-8 col-lg-6 col-lg-offset-2">
+              <div class="callout-text font-alt">
+                <h3 class="callout-title">Want to get in touch?</h3>
+                <p>Did we do well? How can we get better? What should we add to the menu?</p>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-2">
+              <div class="callout-btn-box">
+                <a class="btn btn-w btn-round" href="mailto:jbates@telltalerecruiting.com">Click here to contact us</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Meet the Team -->
+      <section class="module" id="team">
+        <a name="team" style="padding:20%"></a>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-9 col-sm-offset-1">
+              <h2 class="module-title font-alt">Meet Our Team</h2>
+              <p></p>
+              <div class="module-subtitle font-serif">
+                We are Florida born and bred. Our goal is to make our town and community stronger and keeping everyone fat (or skinny) and happy.<br>
+              </div>
+              <br>
+            </div>
+          </div>
+          <div class="row">
+            <div class="mb-sm-20 wow fadeInUp col-md-4 col-sm-6 col-xs-12">
+              <div class="team-item">
+                <div class="team-image">
+                  <img src="assets/images/mainpg/JohnnyW.jpg" alt="Member Photo"/>
+                  <div class="team-detail">
+                    <h5 class="font-alt">Ahoy-hoy!</h5>
+                    <p class="font-serif">The switchman is the guy who flips the tracks. The guy who gets the whole town rolling again.</p>
+                  </div>
+                </div>
+                <div class="team-descr font-alt">
+                  <div class="team-name">John Williams</div>
+                  <div class="team-role">Conductor</div>
+                </div>
+              </div>
+            </div>
+            <div class="mb-sm-20 wow fadeInUp col-md-4 col-sm-6 col-xs-12">
+              <div class="team-item">
+                <div class="team-image">
+                  <img src="assets/images/mainpg/HotDude.jpg" alt="Member Photo"/>
+                  <div class="team-detail">
+                    <h5 class="font-alt">Buenos Dias!</h5>
+                    <p class="font-serif">My passion is making food better than you do.</p>
+                  </div>
+                </div>
+                <div class="team-descr font-alt">
+                  <div class="team-name">Tito Quinones</div>
+                  <div class="team-role">Mexican Entrepreneur</div>
+                </div>
+              </div>
+            </div>
+            <div class="mb-sm-20 wow fadeInUp col-md-4 col-sm-6 col-xs-12">
+              <div class="team-item">
+                <div class="team-image">
+                  <img src="assets/images/mainpg/GermanGuy.jpg" alt="Member Photo"/>
+                  <div class="team-detail">
+                    <h5 class="font-alt">Guten Tag!</h5>
+                    <p class="font-serif">Making customers happy with austrian precision</p>
+                  </div>
+                </div>
+                <div class="team-descr font-alt">
+                  <div class="team-name">Wyatt Griesemer</div>
+                  <div class="team-role">German Entrepreneur</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Map Section -->
+      <div style="margin-bottom: 40px;">
+        <div style="position: relative; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+          <a href="https://www.google.com/maps/place/4323+Herschel+St,+Jacksonville,+FL+32210/data=!4m2!3m1!1s0x88e5b86caacabe3d:0xf9133ddd7ec904b2?sa=X&ved=1t:242&hl=en&ictx=111" target="_blank" rel="noopener" aria-label="Directions on Google Maps">
+            <img 
+              alt="Map of The Buoy at 4323 Herschel Street, Jacksonville" 
+              src="assets/images/mainpg/Location.jpg" 
+              style="width: 100%; height: auto; display: block;"
+              loading="lazy">
+          </a>
+          <div style="position: absolute; bottom: 8px; right: 10px; font-size: 0.75rem; color: #666; background: rgba(255,255,255,0.7); padding: 2px 6px; border-radius: 3px;">
+            © <a href="https://www.mapbox.com/about/maps/" target="_blank" style="color: #333;">Mapbox</a> 
+            © <a href="http://www.openstreetmap.org/copyright" target="_blank" style="color: #333;">OpenStreetMap</a> 
+            <a href="https://www.mapbox.com/map-feedback/" target="_blank" style="color: #333;">Improve this map</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Us -->
+      <section class="module" id="contact" style="padding: 60px 0; background: #f8f8f8;">
+        <div class="container">
+          <div style="border: 3px solid #2287de; border-radius: 12px; background: white; padding: 40px 30px; max-width: 1100px; margin: 0 auto; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+            <h2 style="text-align: center; color: #c8102e; font-family: 'Oswald', sans-serif; font-size: 2.8rem; font-weight: 700; margin-bottom: 35px; text-transform: uppercase; letter-spacing: 1px;">
+              OUR LOCATION
+            </h2>
+
+            <div class="row">
+              <div class="col-md-4 text-center text-md-left" style="margin-bottom: 30px;">
+                <h4 style="color: #333; font-size: 1.5rem; margin-bottom: 15px;">The Buoy</h4>
+                <p style="font-size: 1.1rem; line-height: 1.7; color: #444; margin: 0;">
+                  4323 Herschel St,<br>
+                  Jacksonville, FL 32210<br><br>
+                  <a href="tel:+19043810909" style="color: #c8102e; font-weight: bold; text-decoration: none; font-size: 1.2rem;">
+                    Phone Number TBD
+                  </a>
+                </p>
+
+                <div class="mt-25" style="margin-top: 25px;">
+                  <a href="https://www.facebook.com/thebuoyjax" target="_blank" rel="noopener" style="color: #c8102e; font-size: 2rem; margin: 0 12px; text-decoration: none;">
+                    <i class="fa fa-facebook"></i>
+                  </a>
+                  <a href="https://www.instagram.com/TheBuoyJax" target="_blank" rel="noopener" style="color: #c8102e; font-size: 2rem; margin: 0 12px; text-decoration: none;">
+                    <i class="fa fa-instagram"></i>
+                  </a>
+                </div>
+              </div>
+
+              <div class="col-md-4 text-center" style="margin-bottom: 30px; display: flex; align-items: center; justify-content: center;">
+                <div id="resy-button-container" style="width: 100%; max-width: 260px;">
+                  <a href="https://resy.com/cities/jax/the-buoy" id="resyButton-thebuoy" style="display: block; text-decoration: none;">
+                    <div style="background: #ff462d; color: rgb(237, 231, 231); font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 1.4rem; font-weight: bold; padding: 18px 30px; border-radius: 8px; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 6px 15px rgba(255,70,45,0.4); transition: all 0.3s;">
+                      Book Now <span style="font-size: 1.1rem; margin-left: 8px;">RESY</span>
+                    </div>
+                  </a>
+                  <p style="margin-top: 12px; font-size: 0.95rem; color: #666;">Powered by Resy</p>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <h4 style="color: #333; font-size: 1.5rem; margin-bottom: 15px; text-align: center;">Hours</h4>
+                <ul style="list-style: none; padding: 0; font-size: 1.05rem; line-height: 1.9; color: #444;">
+                  <li><strong>Monday:</strong> Closed</li>
+                  <li><strong>Tuesday - Thursday:</strong> 4:00 pm - 9:00 pm<br><small style="color: #777;">Happy hour from 4:00pm until 6:00pm</small></li>
+                  <li><strong>Friday:</strong> 4:00 pm - 10:00 pm<br><small style="color: #777;">Happy hour from 4:00pm until 6:00pm</small></li>
+                  <li><strong>Saturday:</strong> 11:00 am - 10:00 pm<br><small style="color: #777;">Cocktail happy hour from 11:00am until 6:00pm</small></li>
+                  <li><strong>Sunday:</strong> 11:00 am - 9:00 pm<br><small style="color: #777;">Happy hour from 4:00pm until 6:00pm</small></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="divider-d">
+
+      <footer class="footer bg-dark">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-6">
+              <p class="copyright font-f-alt">&copy; 2026 The Buoy. All Rights Reserved.</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <div class="scroll-up"><a href="#gotop"><i class="fa fa-angle-double-up"></i></a></div>
+  </main>
+
+  <!-- JavaScripts -->
+  <script src="assets/lib/jquery/dist/jquery.js"></script>
+  <script src="assets/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="assets/lib/wow/dist/wow.js"></script>
+  <script src="assets/lib/jquery.mb.ytplayer/dist/jquery.mb.YTPlayer.js"></script>
+  <script src="assets/lib/isotope/dist/isotope.pkgd.js"></script>
+  <script src="assets/lib/imagesloaded/imagesloaded.pkgd.js"></script>
+  <script src="assets/lib/flexslider/jquery.flexslider.js"></script>
+  <script src="assets/lib/owl.carousel/dist/owl.carousel.min.js"></script>
+  <script src="assets/lib/smoothscroll.js"></script>
+  <script src="assets/lib/magnific-popup/dist/jquery.magnific-popup.js"></script>
+  <script src="assets/lib/simple-text-rotator/jquery.simple-text-rotator.min.js"></script>
+  <!-- Slick Slider JS (required for gallery) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+  <script src="assets/js/plugins.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <!-- Initialize Slick Slider -->
+  <script>
+    $(document).ready(function(){
+      $('.slick-slider').slick({
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 4000,
+        arrows: true,
+        prevArrow: '<button type="button" class="slick-prev">Previous</button>',
+        nextArrow: '<button type="button" class="slick-next">Next</button>',
+        responsive: [
+          {
+            breakpoint: 768,
+            settings: {
+              arrows: false
+            }
+          }
+        ]
+      });
+    });
+  </script>
+</body>
+</html>

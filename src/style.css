@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Poppins:wght@700;900&display=swap');
+
+/* Root variables */
+:root {
+  --primary-red: #e30613;
+  --dark-bg: #0f172a;        /* slate-950-ish for deeper feel */
+  --text-light: #f1f5f9;     /* slate-100 */
+  --accent-gray: #334155;
+}
+
+/* Global base */
+body {
+  font-family: 'Open Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  @apply bg-gray-950 text-gray-100;
+}
+
+/* Typography */
+h1, h2, h3 {
+  font-family: 'Poppins', sans-serif;
+  @apply font-bold uppercase tracking-wide;
+}
+
+h1 { @apply text-5xl md:text-7xl; }
+h2 { @apply text-4xl md:text-6xl; }
+h3 { @apply text-2xl; }
+
+p { @apply text-base md:text-lg leading-relaxed text-gray-300; }
+
+/* Header & Nav */
+header {
+  @apply fixed top-0 left-0 w-full z-50 transition-all duration-300;
+}
+
+.scrolled header {
+  @apply bg-gray-950/90 backdrop-blur-md shadow-lg;
+}
+
+nav a {
+  @apply text-gray-200 font-semibold text-lg hover:text-[var(--primary-red)] transition-colors;
+}
+
+/* Hero */
+.hero-wrapper {
+  position: fixed !important;
+  inset: 0 !important;
+  height: 100vh !important;
+  width: 100% !important;
+}
+
+.hero-bg {
+  @apply absolute inset-0 object-cover scale-105 will-change-transform transition-transform duration-1500 ease-out;
+}
+
+.hero-title-group {
+  will-change: transform, opacity;
+}
+
+/* Offer cards – fixed hover with forced transparency */
+.offer-card {
+  @apply bg-slate-800 rounded-lg shadow-md overflow-hidden transition-all duration-400;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.offer-card:hover {
+  transform: translateY(-12px) scale(1.03);
+  box-shadow: 0 25px 50px -12px rgba(226, 6, 19, 0.35);
+  background: rgba(30, 41, 59, 0.65) !important;     /* slate-900 with alpha */
+  border-color: rgba(226, 6, 19, 0.4);
+  backdrop-filter: blur(12px) !important;
+}
+
+.offer-card img {
+  transition: transform 0.6s ease;
+}
+
+.offer-card:hover img {
+  transform: scale(1.08);
+}
+
+/* Animations (keep what you like) */
+.animate-fade-in {
+  animation: fadeIn 1.5s ease-out both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
