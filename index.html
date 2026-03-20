@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Buoy - Seafood Restaurant</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Poppins:wght@700;900&display=swap" rel="stylesheet">
+    <!-- Built Tailwind CSS -->
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <!-- Main JS -->
+  <script type="module" crossorigin src="/assets/index-BF4uwYz_.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-CTnR7CoI.css">
+</head>
+<body class="bg-gray-950 text-gray-100 antialiased">
+
+    <!-- Fixed nav menu on top -->
+    <header class="fixed top-0 left-0 w-full z-[60] transition-all duration-300 bg-transparent">
+        <nav class="container mx-auto px-4 py-4">
+            <ul class="flex justify-center items-center gap-6 md:gap-8">
+                <li><a href="#menu" class="text-gray-200 font-semibold text-lg hover:text-[var(--primary-red)] transition-colors">View the Menu</a></li>
+                <li><a href="#events" class="text-gray-200 font-semibold text-lg hover:text-[var(--primary-red)] transition-colors">View all events</a></li>
+                <li><a href="#market" class="text-gray-200 font-semibold text-lg hover:text-[var(--primary-red)] transition-colors">Seafood Market</a></li>
+                <li><a href="#news" class="text-gray-200 font-semibold text-lg hover:text-[var(--primary-red)] transition-colors">See more news</a></li>
+                <li><a href="#jobs" class="text-gray-200 font-semibold text-lg hover:text-[var(--primary-red)] transition-colors">See jobs</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero – stuck at top until offers pushes it away -->
+    <section class="hero-wrapper sticky top-0 h-screen w-full z-10 overflow-hidden">
+        <!-- Video + overlay -->
+        <div class="relative w-full h-full overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/50 to-black/80 z-0"></div>
+            <video 
+                class="hero-bg absolute inset-0 w-full h-full object-cover scale-105 will-change-transform transition-transform duration-1500 ease-out z-10"
+                autoplay muted loop playsinline poster="/assets/SwampBuoy-RPDQX3oB.jpg"
+            >
+                <source src="/assets/Buoy-J-mbIQEz.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <!-- Scroll-controlled dark fade overlay -->
+        <div id="hero-dark-fade" 
+             class="absolute inset-0 bg-black pointer-events-none transition-opacity duration-700 ease-out z-20"
+             style="opacity: 0;">
+        </div>
+
+        <!-- Hero content – centered -->
+        <div class="absolute inset-0 flex flex-col justify-center items-center text-center z-30 px-4 pointer-events-auto">
+            <div id="hero-title-group" class="hero-title-group transition-all duration-700 ease-out will-change-transform">
+                <h1 class="mb-4 animate-fade-in text-5xl md:text-7xl font-bold uppercase tracking-wide text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.8)]">
+                    River City Fish Co.
+                </h1>
+                <h3 class="text-2xl md:text-4xl font-bold uppercase tracking-wide mb-16 md:mb-24 text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.8)]">
+                    Seafood Bar and Grille
+                </h3>
+                <div class="flex flex-col sm:flex-row gap-6 sm:gap-8 justify-center items-center">
+                    <a href="#menu" class="btn-primary border-2 border-white text-white px-10 py-5 rounded-full font-bold uppercase hover:bg-red-700 transition-all transform hover:scale-105 shadow-lg">
+                        View Menu
+                    </a>
+                    <a href="#contact" class="btn-primary border-2 border-white text-white px-10 py-5 rounded-full font-bold uppercase hover:bg-white hover:text-[var(--primary-red)] transition-all transform hover:scale-105 shadow-lg">
+                        Book Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Spacer to reserve initial full-screen height on load -->
+    <div class="h-screen w-full bg-transparent"></div>
+
+    <!-- Scrolling content – starts after spacer -->
+    <div class="relative z-20">
+
+        <!-- Main content – offers and below push hero up -->
+        <main class="w-full bg-gray-950 relative z-10">
+            <div class="max-w-7xl mx-auto px-4 py-12">
+                <section id="offers" class="py-12 md:py-16">
+                    <div class="offers-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="offer-card bg-slate-800 rounded-lg shadow-md overflow-hidden transition-all duration-400 hover:shadow-xl hover:-translate-y-3">
+                            <img src="/assets/beersbar-CFUsaOSe.jpg" alt="Tuesday Offer" class="w-full h-48 object-cover">
+                            <div class="content p-6">
+                                <h3 class="mb-2 text-[var(--primary-red)] text-2xl font-bold uppercase tracking-wide">Tuesday at $19</h3>
+                                <p class="text-sm text-gray-300">Beer pitchers at $19, specific pizzas, etc. Dining room only. Offer cannot be combined with any other offer. No cash value.</p>
+                            </div>
+                        </div>
+                        <div class="offer-card bg-slate-800 rounded-lg shadow-md overflow-hidden transition-all duration-400 hover:shadow-xl hover:-translate-y-3">
+                            <img src="/assets/winebar-UNsLtwDI.jpg" alt="Wednesday Offer" class="w-full h-48 object-cover">
+                            <div class="content p-6">
+                                <h3 class="mb-2 text-[var(--primary-red)] text-2xl font-bold uppercase tracking-wide">Wednesday: 50% off wines</h3>
+                                <p class="text-sm text-gray-300">Details on wine offers. Exclusivity and disclaimers apply.</p>
+                            </div>
+                        </div>
+                        <div class="offer-card bg-slate-800 rounded-lg shadow-md overflow-hidden transition-all duration-400 hover:shadow-xl hover:-translate-y-3">
+                            <img src="/assets/wingsbar-g-Gu3dX6.jpg" alt="Thursday Offer" class="w-full h-48 object-cover">
+                            <div class="content p-6">
+                                <h3 class="mb-2 text-[var(--primary-red)] text-2xl font-bold uppercase tracking-wide">Thursday: 50% off wings</h3>
+                                <p class="text-sm text-gray-300">Wing offers. Conditions apply.</p>
+                            </div>
+                        </div>
+                        <div class="offer-card bg-slate-800 rounded-lg shadow-md overflow-hidden transition-all duration-400 hover:shadow-xl hover:-translate-y-3">
+                            <img src="/assets/kidsbar-CmbaaGda.jpg" alt="Sunday Offer" class="w-full h-48 object-cover">
+                            <div class="content p-6">
+                                <h3 class="mb-2 text-[var(--primary-red)] text-2xl font-bold uppercase tracking-wide">Sunday: $5 Kids' Menu</h3>
+                                <ul class="text-sm text-gray-300 mb-4">
+                                    <li>CHICKEN BURGER & CAESAR</li>
+                                </ul>
+                                <p class="text-sm text-gray-300">Conditions: One child per adult, etc.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Spring Menu Highlight -->
+                <section id="spring-menu" class="py-6 md:py-10 bg-gray-950">
+                    <div class="max-w-7xl mx-auto px-4">
+                        <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+                            <div class="text-wrapper lg:w-1/2 order-2 lg:order-1" data-aos="fade-up" data-aos-delay="100">
+                                <div class="title-separator flex items-center gap-4 mb-6" data-aos="fade-up" data-aos-delay="150">
+                                    <span class="title like-h5 text-[var(--primary-red)] uppercase font-bold tracking-wider">
+                                        OUR SPRING MENU IS HERE
+                                    </span>
+                                    <span class="lines flex-1 h-px bg-gray-600"></span>
+                                </div>
+
+                                <h2 class="text-4xl md:text-5xl font-bold uppercase tracking-wide mb-6 text-gray-100" data-aos="fade-up" data-aos-delay="250">
+                                    DISCOVER WHAT'S NEW
+                                </h2>
+
+                                <div class="text-lg md:text-xl leading-relaxed text-gray-200 mb-8" data-aos="fade-up" data-aos-delay="400">
+                                    <p>The Greek Goat Cheese, The Heavyweight, the Goat Cheese & Hot Honey Pidzz, and the Maple Crunch Bread are hitting the ice. Fresh flavours, sweet‑and‑spicy vibes, and a burger that plays in the big leagues — explore the full spring line-up now.</p>
+                                </div>
+
+                                <a href="#menu-link" class="btn-primary inline-block bg-[var(--primary-red)] text-white px-10 py-5 rounded-full font-bold uppercase hover:bg-red-700 transition-all shadow-lg" data-aos="fade-up" data-aos-delay="550">
+                                    View the Menu
+                                </a>
+                            </div>
+
+                            <div class="image-content lg:w-1/2 order-1 lg:order-2 overflow-hidden rounded-xl shadow-2xl h-80 lg:h-[480px] flex items-center" data-aos="fade-up" data-aos-delay="300">
+                                <img 
+                                    src="/assets/MintJ-ptWcG1Lt.jpg" 
+                                    alt="Spring Menu Highlight" 
+                                    class="rellax w-full h-[110%] object-cover object-center"
+                                    data-rellax-speed="-1.2"
+                                    data-rellax-percentage="0.4"
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Products Section -->
+                <section id="products" class="py-6 md:py-10 bg-gray-950">
+                    <div class="max-w-7xl mx-auto px-4">
+                        <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+                            <div class="image-content lg:w-1/2 order-1 lg:order-1" data-aos="fade-up" data-aos-delay="300">
+                                <img 
+                                    src="/assets/Seafood1-Dx_nseVv.jpg" 
+                                    alt="New Sauces at Grocery Stores" 
+                                    class="rellax w-full h-[110%] object-cover object-center"
+                                    data-rellax-speed="-1.2"
+                                    data-rellax-percentage="0.4"
+                                >
+                            </div>
+
+                            <div class="text-wrapper lg:w-1/2 order-2 lg:order-2 text-center lg:text-left" data-aos="fade-up" data-aos-delay="100">
+                                <div class="title-separator flex items-center justify-center lg:justify-start gap-4 mb-6" data-aos="fade-up" data-aos-delay="150">
+                                    <span class="title like-h5 text-[var(--primary-red)] uppercase font-bold tracking-wider">
+                                        Check out our Fresh Fish Market
+                                    </span>
+                                    <span class="lines flex-1 h-px bg-gray-600 lg:flex-none lg:w-32"></span>
+                                </div>
+
+                                <h2 class="text-4xl md:text-5xl font-bold uppercase tracking-wide mb-6 text-gray-100" data-aos="fade-up" data-aos-delay="250">
+                                    This Weeks Offerings
+                                </h2>
+
+                                <p class="text-lg md:text-xl leading-relaxed text-gray-200 mb-8" data-aos="fade-up" data-aos-delay="400">
+                                    Each season we identify the freshest seafood from the area
+                                </p>
+
+                                <a href="#products-link" class="btn-primary inline-block bg-[var(--primary-red)] text-white px-10 py-5 rounded-full font-bold uppercase hover:bg-red-700 transition-all shadow-lg" data-aos="fade-up" data-aos-delay="550">
+                                    Discover Them
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Events Section -->
+                <section id="events" class="py-6 md:py-10 bg-gray-950">
+                    <div class="max-w-7xl mx-auto px-4">
+                        <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+                            <!-- Text on left (lg screens) -->
+                            <div class="text-wrapper lg:w-1/2 order-2 lg:order-1" data-aos="fade-up" data-aos-delay="100">
+                                <div class="title-separator flex items-center justify-center lg:justify-start gap-4 mb-6" data-aos="fade-up" data-aos-delay="150">
+                                    <span class="title like-h5 text-[var(--primary-red)] uppercase font-bold tracking-wider">
+                                        SPORT EVENTS
+                                    </span>
+                                    <span class="lines flex-1 h-px bg-gray-600 lg:flex-none lg:w-32"></span>
+                                </div>
+
+                                <h2 class="text-4xl md:text-5xl font-bold uppercase tracking-wide mb-6 text-gray-100" data-aos="fade-up" data-aos-delay="250">
+                                    EVENTS NOT TO BE MISSED
+                                </h2>
+
+                                <p class="text-lg md:text-xl leading-relaxed text-gray-200 mb-8" data-aos="fade-up" data-aos-delay="400">
+                                    Catch every game on our big screens with friends, great food, and the best atmosphere in town. Check out the full schedule below!
+                                </p>
+
+                                <a href="#events-link" class="btn-primary inline-block bg-[var(--primary-red)] text-white px-10 py-5 rounded-full font-bold uppercase hover:bg-red-700 transition-all shadow-lg" data-aos="fade-up" data-aos-delay="550">
+                                    View All Events
+                                </a>
+                            </div>
+
+                            <!-- Image on right (lg screens) -->
+                            <div class="image-content lg:w-1/2 order-1 lg:order-2 overflow-hidden rounded-xl shadow-2xl h-80 lg:h-[480px] flex items-center" data-aos="fade-up" data-aos-delay="300">
+                                <img 
+                                    src="/assets/beersbar-CFUsaOSe.jpg" 
+                                    alt="Sports Events at The Buoy" 
+                                    class="rellax w-full h-[110%] object-cover object-center"
+                                    data-rellax-speed="-1.2"
+                                    data-rellax-percentage="0.4"
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- News section -->
+                <section id="news" class="py-12 md:py-16 bg-gray-950">
+                    <h2 class="text-3xl md:text-4xl font-bold uppercase tracking-wide text-center mb-8 text-gray-100">More about us...</h2>
+                    
+                    <div class="news-carousel swiper my-8">
+                        <div class="swiper-wrapper">
+                            <!-- Slide 1 -->
+                            <div class="swiper-slide news-card bg-slate-800 rounded-lg shadow-md overflow-hidden transition-all hover:shadow-xl">
+                                <img 
+                                    src="/assets/breaking-5JSGt6Zg.avif" 
+                                    alt="Breaking Ground on the new Restaurant" 
+                                    class="w-full h-48 object-cover"
+                                >
+                                <div class="p-6">
+                                    <h3 class="text-lg font-bold text-gray-100 mb-2">
+                                        Sept 2025: Breaking Ground on the new Restaurant
+                                    </h3>
+                                    <p class="text-sm text-gray-300">
+                                        The construction has begun! Follow our journey.
+                                    </p>
+                                    <a href="#blog-post-1" class="mt-4 inline-block text-[var(--primary-red)] hover:underline">
+                                        Read More →
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Slide 2 -->
+                            <div class="swiper-slide news-card bg-slate-800 rounded-lg shadow-md overflow-hidden transition-all hover:shadow-xl">
+                                <img 
+                                    src="/assets/swedish-Z00cFYAh.jpg" 
+                                    alt="Meet our Executive Chefs" 
+                                    class="w-full h-48 object-cover"
+                                >
+                                <div class="p-6">
+                                    <h3 class="text-lg font-bold text-gray-100 mb-2">
+                                        February 2026: Meet our Executive Chefs
+                                    </h3>
+                                    <p class="text-sm text-gray-300">
+                                        Get to know the team behind the menu.
+                                    </p>
+                                    <a href="#blog-post-2" class="mt-4 inline-block text-[var(--primary-red)] hover:underline">
+                                        Read More →
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Slide 3 -->
+                            <div class="swiper-slide news-card bg-slate-800 rounded-lg shadow-md overflow-hidden transition-all hover:shadow-xl">
+                                <img 
+                                    src="/assets/menu-DqzMh6_R.jpg" 
+                                    alt="How's and Why's of our Menu" 
+                                    class="w-full h-48 object-cover"
+                                >
+                                <div class="p-6">
+                                    <h3 class="text-lg font-bold text-gray-100 mb-2">
+                                        April 2026: How's and Why's of our Menu
+                                    </h3>
+                                    <p class="text-sm text-gray-300">
+                                        The story behind every dish.
+                                    </p>
+                                    <a href="#blog-post-3" class="mt-4 inline-block text-[var(--primary-red)] hover:underline">
+                                        Read More →
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Careers section -->
+                <section id="careers" class="py-12 md:py-18">
+                    <h2 class="text-3xl md:text-4xl font-bold uppercase tracking-wide text-center mb-4 text-gray-100">Get in on the action</h2>
+                    <h3 class="text-2xl font-bold uppercase tracking-wide text-center mb-8 text-gray-100">We want you on our team</h3>
+                    <p class="text-base md:text-lg leading-relaxed text-center mb-12 text-gray-200">Job opportunities description.</p>
+                    <a href="#jobs-link" class="btn-primary block mx-auto">See jobs</a>
+                </section>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-black text-gray-300 py-16 md:py-20">
+            <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 text-center md:text-left">
+                    <!-- Column 1: The Buoy -->
+                    <div>
+                        <h3 class="text-3xl md:text-4xl font-bold uppercase tracking-wider text-[var(--primary-red)] mb-6">
+                            The Buoy
+                        </h3>
+                        <p class="text-sm md:text-base leading-relaxed mb-4">
+                            Seafood Bar & Grille<br>
+                            4323 Herschel St, Jacksonville, FL 32210
+                        </p>
+                        <p class="text-sm md:text-base mb-2">
+                            <a href="mailto:info@thebuoyjax.com" class="hover:text-white transition-colors">
+                                info@thebuoyjax.com
+                            </a>
+                        </p>
+                        <p class="text-sm md:text-base mb-6">
+                            <a href="tel:+19043810909" class="hover:text-white transition-colors">
+                                (904) 381-0909
+                            </a>
+                        </p>
+                        <p class="text-sm">
+                            © 2026 The Buoy. All Rights Reserved.<br>
+                            <a href="#privacy" class="hover:text-[var(--primary-red)] transition-colors">Privacy Policy</a> • 
+                            <a href="#terms" class="hover:text-[var(--primary-red)] transition-colors">Terms of Service</a>
+                        </p>
+                    </div>
+
+                    <!-- Column 2: Quick Links -->
+                    <div>
+                        <h4 class="text-xl md:text-2xl font-semibold uppercase tracking-wide mb-6 text-[var(--primary-red)]">
+                            Quick Links
+                        </h4>
+                        <ul class="space-y-3 text-base">
+                            <li><a href="#menu" class="hover:text-white transition-colors">Menu</a></li>
+                            <li><a href="#events" class="hover:text-white transition-colors">Events</a></li>
+                            <li><a href="#market" class="hover:text-white transition-colors">Seafood Market</a></li>
+                            <li><a href="#news" class="hover:text-white transition-colors">News</a></li>
+                            <li><a href="#jobs" class="hover:text-white transition-colors">Jobs</a></li>
+                            <li><a href="#contact" class="hover:text-white transition-colors">Contact</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 3: Hours -->
+                    <div>
+                        <h4 class="text-xl md:text-2xl font-semibold uppercase tracking-wide mb-6 text-[var(--primary-red)]">
+                            Hours
+                        </h4>
+                        <ul class="space-y-3 text-base">
+                            <li><strong>Monday:</strong> Closed</li>
+                            <li><strong>Tue–Thu:</strong> 4:00 pm – 9:00 pm</li>
+                            <li><strong>Friday:</strong> 4:00 pm – 10:00 pm</li>
+                            <li><strong>Saturday:</strong> 11:00 am – 10:00 pm</li>
+                            <li><strong>Sunday:</strong> 11:00 am – 9:00 pm</li>
+                        </ul>
+                        <p class="text-sm text-gray-500 mt-4 italic">Happy hour varies — check with us!</p>
+                    </div>
+                </div>
+
+                <!-- Social icons below columns -->
+                <div class="mt-12 pt-8 border-t border-gray-800 text-center">
+                    <h4 class="text-xl font-semibold uppercase tracking-wide mb-6 text-[var(--primary-red)]">
+                        Connect
+                    </h4>
+                    <div class="flex justify-center gap-10 text-4xl">
+                        <a href="https://facebook.com/thebuoyjax" target="_blank" class="hover:text-[var(--primary-red)] transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://instagram.com/thebuoyjax" target="_blank" class="hover:text-[var(--primary-red)] transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Bottom fine print -->
+                <div class="mt-12 text-center text-sm text-gray-400">
+                    <p>Designed with ❤️ in Jacksonville | <a href="#privacy" class="hover:text-white transition-colors">Privacy Policy</a> | <a href="#terms" class="hover:text-white transition-colors">Terms of Service</a></p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        const swiper = new Swiper('.news-carousel', {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                640: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 },
+            }
+        });
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 800,
+        once: true,
+        easing: 'ease-out',
+        offset: 120
+      });
+    </script>
+</body>
+</html>
