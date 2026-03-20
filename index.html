@@ -43,7 +43,7 @@
     </button>
 
     <!-- Mobile menu – force high z-index, hidden initially -->
-    <ul id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-gray-950/95 backdrop-blur-md flex flex-col items-center gap-6 py-8 md:hidden shadow-2xl border-t border-gray-800 z-[100]">
+    <ul id="mobile-menu" class="display-none absolute top-full left-0 w-full bg-gray-950/95 backdrop-blur-md flex flex-col items-center gap-8 py-8 md:hidden shadow-2xl border-t border-gray-800">
       <li><a href="#menu" class="text-gray-200 font-semibold text-xl hover:text-[var(--primary-red)] transition-colors py-3 px-8 w-full text-center">View the Menu</a></li>
       <li><a href="#events" class="text-gray-200 font-semibold text-xl hover:text-[var(--primary-red)] transition-colors py-3 px-8 w-full text-center">View all events</a></li>
       <li><a href="#market" class="text-gray-200 font-semibold text-xl hover:text-[var(--primary-red)] transition-colors py-3 px-8 w-full text-center">Seafood Market</a></li>
@@ -452,50 +452,35 @@
    <!-- Vanilla JS hamburger toggle - using style.display for reliability -->
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM loaded - setting up hamburger toggle');
+    const btn = document.getElementById('hamburger-btn');
+    const menu = document.getElementById('mobile-menu');
+    const icon = btn?.querySelector('i');
 
-    const hamburgerBtn = document.getElementById('hamburger-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    if (hamburgerBtn && mobileMenu) {
-      const icon = hamburgerBtn.querySelector('i');
-
-      hamburgerBtn.addEventListener('click', () => {
-        console.log('Hamburger clicked');
-        if (mobileMenu.style.display === 'none' || mobileMenu.style.display === '') {
-          mobileMenu.style.display = 'flex';
-          icon.classList.remove('fa-bars');
-          icon.classList.add('fa-times');
-        } else {
-          mobileMenu.style.display = 'none';
-          icon.classList.remove('fa-times');
-          icon.classList.add('fa-bars');
-        }
+    if (btn && menu && icon) {
+      btn.addEventListener('click', () => {
+        menu.classList.toggle('display-none');
+        menu.classList.toggle('display-flex');
+        icon.classList.toggle('fa-bars');
+        icon.classList.toggle('fa-times');
       });
 
-      // Close on link click
-      mobileMenu.querySelectorAll('a').forEach(link => {
+      menu.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
-          console.log('Link clicked - closing menu');
-          mobileMenu.style.display = 'none';
+          menu.classList.add('display-none');
+          menu.classList.remove('display-flex');
           icon.classList.remove('fa-times');
           icon.classList.add('fa-bars');
         });
       });
 
-      // Close on outside click
-      document.addEventListener('click', (e) => {
-        if (!hamburgerBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
-          console.log('Outside click - closing menu');
-          mobileMenu.style.display = 'none';
+      document.addEventListener('click', e => {
+        if (!btn.contains(e.target) && !menu.contains(e.target)) {
+          menu.classList.add('display-none');
+          menu.classList.remove('display-flex');
           icon.classList.remove('fa-times');
           icon.classList.add('fa-bars');
         }
       });
-
-      console.log('Toggle listeners added');
-    } else {
-      console.error('Hamburger elements not found');
     }
   });
 </script>
@@ -519,37 +504,6 @@
     if (menu) {
       menu.classList.toggle('hidden');
       console.log('Manual toggle worked!');
-    }
-  });
-</script>
-    <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const btn = document.getElementById('hamburger-btn');
-    const menu = document.getElementById('mobile-menu');
-    const icon = btn?.querySelector('i');
-
-    if (btn && menu && icon) {
-      btn.addEventListener('click', () => {
-        menu.classList.toggle('hidden');
-        icon.classList.toggle('fa-bars');
-        icon.classList.toggle('fa-times');
-      });
-
-      menu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          menu.classList.add('hidden');
-          icon.classList.remove('fa-times');
-          icon.classList.add('fa-bars');
-        });
-      });
-
-      document.addEventListener('click', e => {
-        if (!btn.contains(e.target) && !menu.contains(e.target)) {
-          menu.classList.add('hidden');
-          icon.classList.remove('fa-times');
-          icon.classList.add('fa-bars');
-        }
-      });
     }
   });
 </script>
