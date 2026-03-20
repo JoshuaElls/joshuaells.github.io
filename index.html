@@ -15,45 +15,25 @@
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <!-- Main JS -->
-    <script type="module" src="./main.js"></script>
+    <script type="module" src="src/main.js"></script>
 </head>
-<body class="bg-gray-950 text-gray-100 antialiased" style="background-color: #0f172a;">
+<body class="bg-gray-950 text-gray-100 antialiased">
 
     <!-- Fixed nav menu on top -->
-  <!-- Fixed nav menu on top -->
-<header class="fixed top-0 left-0 w-full z-[100] transition-all duration-300 bg-transparent">
-  <nav class="container mx-auto px-4 py-4 flex items-center justify-between">
-    <!-- Logo left -->
-    <a href="/" class="text-2xl md:text-3xl font-bold text-[var(--primary-red)] tracking-wider hover:text-white transition-colors">
-      The Buoy
-    </a>
+    <header class="fixed top-0 left-0 w-full z-[60] transition-all duration-300 bg-transparent">
+        <nav class="container mx-auto px-4 py-4">
+            <ul class="flex justify-center items-center gap-6 md:gap-8">
+                <li><a href="#menu" class="text-gray-200 font-semibold text-lg hover:text-[var(--primary-red)] transition-colors">View the Menu</a></li>
+                <li><a href="#events" class="text-gray-200 font-semibold text-lg hover:text-[var(--primary-red)] transition-colors">View all events</a></li>
+                <li><a href="#market" class="text-gray-200 font-semibold text-lg hover:text-[var(--primary-red)] transition-colors">Seafood Market</a></li>
+                <li><a href="#news" class="text-gray-200 font-semibold text-lg hover:text-[var(--primary-red)] transition-colors">See more news</a></li>
+                <li><a href="#jobs" class="text-gray-200 font-semibold text-lg hover:text-[var(--primary-red)] transition-colors">See jobs</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <!-- Desktop links (hidden below md) -->
-    <ul class="hidden md:flex justify-center items-center gap-6 lg:gap-10">
-      <li><a href="#menu" class="text-gray-200 font-semibold text-lg hover:text-[var(--primary-red)] transition-colors">View the Menu</a></li>
-      <li><a href="#events" class="text-gray-200 font-semibold text-lg hover:text-[var(--primary-red)] transition-colors">View all events</a></li>
-      <li><a href="#market" class="text-gray-200 font-semibold text-lg hover:text-[var(--primary-red)] transition-colors">Seafood Market</a></li>
-      <li><a href="#news" class="text-gray-200 font-semibold text-lg hover:text-[var(--primary-red)] transition-colors">See more news</a></li>
-      <li><a href="#jobs" class="text-gray-200 font-semibold text-lg hover:text-[var(--primary-red)] transition-colors">See jobs</a></li>
-    </ul>
-
-    <!-- Hamburger – only mobile -->
-    <button id="hamburger-btn" class="md:hidden text-gray-200 text-3xl focus:outline-none hover:text-[var(--primary-red)] transition-colors z-[101]" aria-label="Toggle menu">
-      <i class="fas fa-bars"></i>
-    </button>
-
-    <!-- Mobile menu – force high z-index, hidden initially -->
-    <ul id="mobile-menu" class="display-none absolute top-full left-0 w-full bg-gray-950/95 backdrop-blur-md flex flex-col items-center gap-8 py-8 md:hidden shadow-2xl border-t border-gray-800">
-      <li><a href="#menu" class="text-gray-200 font-semibold text-xl hover:text-[var(--primary-red)] transition-colors py-3 px-8 w-full text-center">View the Menu</a></li>
-      <li><a href="#events" class="text-gray-200 font-semibold text-xl hover:text-[var(--primary-red)] transition-colors py-3 px-8 w-full text-center">View all events</a></li>
-      <li><a href="#market" class="text-gray-200 font-semibold text-xl hover:text-[var(--primary-red)] transition-colors py-3 px-8 w-full text-center">Seafood Market</a></li>
-      <li><a href="#news" class="text-gray-200 font-semibold text-xl hover:text-[var(--primary-red)] transition-colors py-3 px-8 w-full text-center">See more news</a></li>
-      <li><a href="#jobs" class="text-gray-200 font-semibold text-xl hover:text-[var(--primary-red)] transition-colors py-3 px-8 w-full text-center">See jobs</a></li>
-    </ul>
-  </nav>
-</header>
-    <!-- Hero – relative so JS can push it up -->
-    <section class="hero-wrapper relative h-screen w-full z-10 overflow-hidden">
+    <!-- Hero – stuck at top until offers pushes it away -->
+    <section class="hero-wrapper sticky top-0 h-screen w-full z-10 overflow-hidden">
         <!-- Video + overlay -->
         <div class="relative w-full h-full overflow-hidden">
             <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/50 to-black/80 z-0"></div>
@@ -98,11 +78,10 @@
     <!-- Scrolling content – starts after spacer -->
     <div class="relative z-20">
 
-        <!-- Main content – forced dark background -->
-        <main class="w-full bg-gray-950 !bg-gray-950 relative z-10" style="background-color: #0f172a;">
+        <!-- Main content – offers and below push hero up -->
+        <main class="w-full bg-gray-950 relative z-10">
             <div class="max-w-7xl mx-auto px-4 py-12">
-                <!-- Offers section – explicit dark background -->
-                <section id="offers" class="py-12 md:py-16 bg-gray-950" style="background-color: #0f172a;">
+                <section id="offers" class="py-12 md:py-16">
                     <div class="offers-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         <div class="offer-card bg-slate-800 rounded-lg shadow-md overflow-hidden transition-all duration-400 hover:shadow-xl hover:-translate-y-3">
                             <img src="/assets/images/mainpg/beersbar.jpg" alt="Tuesday Offer" class="w-full h-48 object-cover">
@@ -139,7 +118,7 @@
                 </section>
 
                 <!-- Spring Menu Highlight -->
-                <section id="spring-menu" class="py-6 md:py-10 bg-gray-950" style="background-color: #0f172a;">
+                <section id="spring-menu" class="py-6 md:py-10 bg-gray-950">
                     <div class="max-w-7xl mx-auto px-4">
                         <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
                             <div class="text-wrapper lg:w-1/2 order-2 lg:order-1" data-aos="fade-up" data-aos-delay="100">
@@ -177,7 +156,7 @@
                 </section>
 
                 <!-- Products Section -->
-                <section id="products" class="py-6 md:py-10 bg-gray-950" style="background-color: #0f172a;">
+                <section id="products" class="py-6 md:py-10 bg-gray-950">
                     <div class="max-w-7xl mx-auto px-4">
                         <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
                             <div class="image-content lg:w-1/2 order-1 lg:order-1" data-aos="fade-up" data-aos-delay="300">
@@ -215,7 +194,7 @@
                 </section>
 
                 <!-- Events Section -->
-                <section id="events" class="py-6 md:py-10 bg-gray-950" style="background-color: #0f172a;">
+                <section id="events" class="py-6 md:py-10 bg-gray-950">
                     <div class="max-w-7xl mx-auto px-4">
                         <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
                             <!-- Text on left (lg screens) -->
@@ -255,7 +234,7 @@
                 </section>
 
                 <!-- News section -->
-                <section id="news" class="py-12 md:py-16 bg-gray-950" style="background-color: #0f172a;">
+                <section id="news" class="py-12 md:py-16 bg-gray-950">
                     <h2 class="text-3xl md:text-4xl font-bold uppercase tracking-wide text-center mb-8 text-gray-100">More about us...</h2>
                     
                     <div class="news-carousel swiper my-8">
@@ -324,7 +303,7 @@
                 </section>
 
                 <!-- Careers section -->
-                <section id="careers" class="py-12 md:py-18 bg-gray-950" style="background-color: #0f172a;">
+                <section id="careers" class="py-12 md:py-18">
                     <h2 class="text-3xl md:text-4xl font-bold uppercase tracking-wide text-center mb-4 text-gray-100">Get in on the action</h2>
                     <h3 class="text-2xl font-bold uppercase tracking-wide text-center mb-8 text-gray-100">We want you on our team</h3>
                     <p class="text-base md:text-lg leading-relaxed text-center mb-12 text-gray-200">Job opportunities description.</p>
@@ -442,70 +421,5 @@
         offset: 120
       });
     </script>
-    <!-- Alpine.js - load at end of body for reliable init -->
-<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-<script>
-  document.addEventListener('alpine:init', () => {
-    console.log('Alpine initialized successfully');
-  });
-</script>
-   <!-- Vanilla JS hamburger toggle - using style.display for reliability -->
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const btn = document.getElementById('hamburger-btn');
-    const menu = document.getElementById('mobile-menu');
-    const icon = btn?.querySelector('i');
-
-    if (btn && menu && icon) {
-      btn.addEventListener('click', () => {
-        menu.classList.toggle('display-none');
-        menu.classList.toggle('display-flex');
-        icon.classList.toggle('fa-bars');
-        icon.classList.toggle('fa-times');
-      });
-
-      menu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          menu.classList.add('display-none');
-          menu.classList.remove('display-flex');
-          icon.classList.remove('fa-times');
-          icon.classList.add('fa-bars');
-        });
-      });
-
-      document.addEventListener('click', e => {
-        if (!btn.contains(e.target) && !menu.contains(e.target)) {
-          menu.classList.add('display-none');
-          menu.classList.remove('display-flex');
-          icon.classList.remove('fa-times');
-          icon.classList.add('fa-bars');
-        }
-      });
-    }
-  });
-</script>
-
-<script>
-  // Quick test button (remove after testing)
-  console.log('Quick test: trying manual toggle');
-  const testBtn = document.createElement('button');
-  testBtn.textContent = 'Test Toggle (remove me)';
-  testBtn.style.position = 'fixed';
-  testBtn.style.bottom = '20px';
-  testBtn.style.right = '20px';
-  testBtn.style.zIndex = '1000';
-  testBtn.style.padding = '10px';
-  testBtn.style.background = 'red';
-  testBtn.style.color = 'white';
-  document.body.appendChild(testBtn);
-
-  testBtn.addEventListener('click', () => {
-    const menu = document.getElementById('mobile-menu');
-    if (menu) {
-      menu.classList.toggle('hidden');
-      console.log('Manual toggle worked!');
-    }
-  });
-</script>
 </body>
 </html>
