@@ -449,37 +449,51 @@
     console.log('Alpine initialized successfully');
   });
 </script>
-    <!-- Vanilla JS hamburger toggle -->
+   <!-- Vanilla JS hamburger toggle with debug logs -->
 <script>
   document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM fully loaded - checking for hamburger elements');
+
     const hamburgerBtn = document.getElementById('hamburger-btn');
     const mobileMenu = document.getElementById('mobile-menu');
-    const icon = hamburgerBtn.querySelector('i');
+
+    console.log('Hamburger button found?', !!hamburgerBtn);
+    console.log('Mobile menu found?', !!mobileMenu);
 
     if (hamburgerBtn && mobileMenu) {
+      const icon = hamburgerBtn.querySelector('i');
+      console.log('Icon found in button?', !!icon);
+
       hamburgerBtn.addEventListener('click', () => {
+        console.log('Hamburger clicked - toggling menu');
         mobileMenu.classList.toggle('hidden');
         icon.classList.toggle('fa-bars');
         icon.classList.toggle('fa-times');
       });
 
-      // Close menu when clicking a link
+      // Close on link click
       mobileMenu.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
+          console.log('Link clicked - closing menu');
           mobileMenu.classList.add('hidden');
           icon.classList.add('fa-bars');
           icon.classList.remove('fa-times');
         });
       });
 
-      // Close menu when clicking outside
+      // Close on outside click
       document.addEventListener('click', (e) => {
         if (!hamburgerBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+          console.log('Clicked outside - closing menu');
           mobileMenu.classList.add('hidden');
           icon.classList.add('fa-bars');
           icon.classList.remove('fa-times');
         }
       });
+
+      console.log('Event listeners added successfully');
+    } else {
+      console.error('Hamburger elements NOT found - check IDs in HTML');
     }
   });
 </script>
