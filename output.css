@@ -3617,3 +3617,16 @@ nav a:hover{
 .grid { display: grid; }
 .items-center { align-items: center; }
 .justify-center { justify-content: center; }
+
+/* Missing Tailwind hidden utility - force it */
+.hidden {
+  display: none !important;
+}
+
+/* Optional: stronger toggle classes if needed */
+.display-none {
+  display: none !important;
+}
+.display-flex {
+  display: flex !important;
+}
