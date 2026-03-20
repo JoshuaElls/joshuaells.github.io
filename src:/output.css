@@ -2992,10 +2992,11 @@ nav a:hover{
 /* Hero */
 
 .hero-wrapper {
-  position: fixed !important;
-  inset: 0 !important;
-  height: 100vh !important;
-  width: 100% !important;
+  /* Remove sticky and fixed positioning */
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
 }
 
 .hero-bg{
