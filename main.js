@@ -1,8 +1,3 @@
-import 'https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js';
-
-
-// ... your DOMContentLoaded listener, scroll listeners, etc.
-
 // Force video autoplay after load (helps with strict policies)
 document.addEventListener('DOMContentLoaded', () => {
   const video = document.querySelector('video');
