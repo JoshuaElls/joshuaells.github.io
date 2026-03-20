@@ -14,32 +14,30 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 window.addEventListener('scroll', () => {
-  const hero = document.querySelector('.hero-wrapper');
+  const hero        = document.querySelector('.hero-wrapper');
   const fadeOverlay = document.getElementById('hero-dark-fade');
-  const heroTitle = document.getElementById('hero-title-group');
+  const titleGroup  = document.getElementById('hero-title-group');
 
   if (!hero || !fadeOverlay) return;
 
-  const scrollPos = window.scrollY;
+  const scrollY = window.scrollY;
   const vh = window.innerHeight;
-  const offersStart = document.querySelector('#offers')?.getBoundingClientRect().top || vh; // fallback
 
-  // Progress: 0 at top → 1 when offers section reaches ~top of viewport
-  let progress = Math.max(0, Math.min(1, (scrollPos) / (vh * 0.8))); // tune 0.8 for timing
+  // How far we've scrolled relative to one viewport height
+  let progress = scrollY / (vh * 0.85);           // 0.85 = effect ends ~85% down first screen
+  progress = Math.max(0, Math.min(1, progress));
 
-  // 1. Push hero up (simulates being "pushed" by content below)
-  const maxPush = vh * 0.4; // max ~40% of screen
-  const pushAmount = progress * maxPush;
-  hero.style.transform = `translateY(-${pushAmount}px)`;
+  // Push hero upward (creates "being pushed by content" illusion)
+  const maxPush = vh * 0.45;                      // max ~45vh upward movement
+  hero.style.transform = `translateY(-${progress * maxPush}px)`;
 
-  // 2. Stronger black fade as it pushes up
-  const fadeOpacity = Math.min(0.92, progress * 1.4); // goes almost fully black
-  fadeOverlay.style.opacity = fadeOpacity;
+  // Fade to black
+  fadeOverlay.style.opacity = Math.min(0.92, progress * 1.35);  // strong fade
 
-  // 3. Optional: fade out title faster for dramatic reveal
-  if (heroTitle) {
-    heroTitle.style.opacity = Math.max(0, 1 - progress * 1.8);
-    heroTitle.style.transform = `translateY(-${progress * 120}px)`; // extra title lift
+  // Optional: fade out & lift title
+  if (titleGroup) {
+    titleGroup.style.opacity = 1 - progress * 1.7;
+    titleGroup.style.transform = `translateY(-${progress * 120}px)`;
   }
 });
 
