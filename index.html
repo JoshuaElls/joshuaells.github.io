@@ -20,6 +20,19 @@
 
     <!-- Main JS -->
     <script type="module" src="main.js"></script>
+    <style>
+  /* Navbar: z-[999] and right-0 not compiled */
+  #navbar { z-index: 999 !important; right: 0 !important; }
+
+  /* Main content top padding */
+  .pt-6 { padding-top: 1.5rem; }
+
+  /* Nav responsive: hidden + md:flex conflict fix */
+  @media (min-width: 768px) {
+    .md\:flex   { display: flex !important; }
+    .md\:hidden { display: none !important; }
+  }
+</style>
 </head>
 <body class="bg-gray-950 text-gray-100 antialiased">
 
