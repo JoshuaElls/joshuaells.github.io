@@ -21,6 +21,9 @@
     <!-- Main JS -->
     <script type="module" src="main.js"></script>
     <style>
+  /* output.css erroneously sets .hero-wrapper to position:fixed — override it */
+  .hero-wrapper { position: relative !important; height: 100vh !important; inset: unset !important; }
+
   /* Navbar: z-[999] and right-0 not compiled */
   #navbar { z-index: 999 !important; right: 0 !important; }
 
