@@ -19,7 +19,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <!-- Main JS -->
-    <script type="module" src="src/main.js"></script>
+    <script type="module" src="main.js"></script>
 </head>
 <body class="bg-gray-950 text-gray-100 antialiased">
 
@@ -380,6 +380,12 @@
   window.addEventListener('scroll', updateNavbar);
   updateNavbar();
 </script>
+    <style>
+  @media (min-width: 768px) {
+    .md\:flex  { display: flex !important; }
+    .md\:hidden { display: none !important; }
+  }
+</style>
 
 </body>
 </html>
