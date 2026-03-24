@@ -14,6 +14,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+    <!-- Alpine.js — MUST be in <head> with defer so x-data works on page load -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
     <!-- Main JS -->
     <script type="module" src="src/main.js"></script>
 </head>
@@ -21,7 +25,8 @@
 
 <!-- NAVBAR -->
 <nav id="navbar"
-     class="fixed top-0 left-0 right-0 z-[999] bg-black/95 border-b border-gray-800 transition-all duration-300"
+     class="fixed top-0 left-0 right-0 z-[999] border-b border-gray-800 transition-all duration-300"
+     style="background-color: rgba(0,0,0,0.95);"
      x-data="{ open: false }">
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -38,8 +43,8 @@
       </div>
 
       <!-- Mobile Hamburger -->
-      <button 
-        @click="open = !open" 
+      <button
+        @click="open = !open"
         class="md:hidden text-white focus:outline-none"
         aria-label="Toggle menu">
         <svg x-show="!open" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -53,10 +58,11 @@
   </div>
 
   <!-- Mobile Menu -->
-  <div 
-    x-show="open" 
+  <div
+    x-show="open"
     x-transition
-    class="md:hidden bg-black border-t border-gray-800"
+    class="md:hidden border-t border-gray-800"
+    style="background-color: #000000;"
     @click.away="open = false">
     <div class="px-4 py-6 space-y-4 text-center">
       <a href="#home" @click="open = false" class="block text-gray-300 hover:text-white text-xl transition">Home</a>
@@ -68,19 +74,22 @@
 </nav>
 
 <!-- HERO -->
-<section class="relative h-screen w-full overflow-hidden">
+<section class="hero-wrapper relative h-screen w-full overflow-hidden">
   <div class="relative w-full h-full overflow-hidden">
     <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/50 to-black/80 z-0"></div>
-    <video 
+    <video
       class="absolute inset-0 w-full h-full object-cover scale-105 will-change-transform transition-transform duration-1500 ease-out z-10"
       autoplay muted loop playsinline poster="assets/images/mainpg/SwampBuoy.jpg">
       <source src="assets/images/mainpg/Buoy.mp4" type="video/mp4">
     </video>
   </div>
 
+  <!-- Dark fade overlay for scroll effect -->
+  <div id="hero-dark-fade" class="absolute inset-0 z-20 bg-black pointer-events-none" style="opacity: 0;"></div>
+
   <!-- Hero content -->
   <div class="absolute inset-0 flex flex-col justify-center items-center text-center z-30 px-4">
-    <div class="hero-title-group transition-all duration-700 ease-out will-change-transform">
+    <div id="hero-title-group" class="hero-title-group transition-all duration-700 ease-out will-change-transform">
       <h1 class="mb-4 text-5xl md:text-7xl font-bold uppercase tracking-wide text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.8)]">
         River City Fish Co.
       </h1>
@@ -288,7 +297,7 @@
         </p>
         <p class="text-sm">
           © 2026 The Buoy. All Rights Reserved.<br>
-          <a href="#privacy" class="hover:text-[var(--primary-red)] transition-colors">Privacy Policy</a> • 
+          <a href="#privacy" class="hover:text-[var(--primary-red)] transition-colors">Privacy Policy</a> •
           <a href="#terms" class="hover:text-[var(--primary-red)] transition-colors">Terms of Service</a>
         </p>
       </div>
@@ -332,7 +341,7 @@
   </div>
 </footer>
 
-<!-- Scripts -->
+<!-- Swiper JS -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
   const swiper = new Swiper('.news-carousel', {
@@ -346,25 +355,25 @@
   });
 </script>
 
+<!-- AOS -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
   AOS.init({ duration: 800, once: true, easing: 'ease-out', offset: 120 });
 </script>
 
-<!-- Alpine.js -->
-<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
-<!-- Navbar scroll effect -->
+<!-- Navbar scroll effect — uses inline styles to avoid compiled CSS dependency -->
 <script>
   const navbar = document.getElementById('navbar');
 
   function updateNavbar() {
     if (window.scrollY > 80) {
-      navbar.classList.add('bg-black/70', 'backdrop-blur-md');
-      navbar.classList.remove('bg-black');
+      navbar.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+      navbar.style.backdropFilter = 'blur(12px)';
+      navbar.style.webkitBackdropFilter = 'blur(12px)';
     } else {
-      navbar.classList.remove('bg-black/70', 'backdrop-blur-md');
-      navbar.classList.add('bg-black');
+      navbar.style.backgroundColor = 'rgba(0, 0, 0, 0.95)';
+      navbar.style.backdropFilter = 'none';
+      navbar.style.webkitBackdropFilter = 'none';
     }
   }
 
