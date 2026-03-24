@@ -21,7 +21,7 @@
 
 <!-- Navbar -->
 <nav id="navbar"
-     class="fixed top-0 left-0 right-0 z-50 bg-black border-b border-gray-800 transition-all duration-300"
+     class="fixed top-0 left-0 right-0 z-50 bg-black/95 border-b border-gray-800 transition-all duration-300"
      x-data="{ open: false }">
   
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -37,7 +37,7 @@
         <a href="#contact" class="text-gray-300 hover:text-white transition">Contact</a>
       </div>
 
-      <!-- Mobile Hamburger Button -->
+      <!-- Mobile Hamburger -->
       <button 
         @click="open = !open" 
         class="md:hidden text-white focus:outline-none"
@@ -56,12 +56,7 @@
   <!-- Mobile Menu -->
   <div 
     x-show="open" 
-    x-transition:enter="transition ease-out duration-300"
-    x-transition:enter-start="opacity-0 scale-95"
-    x-transition:enter-end="opacity-100 scale-100"
-    x-transition:leave="transition ease-in duration-200"
-    x-transition:leave-start="opacity-100 scale-100"
-    x-transition:leave-end="opacity-0 scale-95"
+    x-transition
     class="md:hidden bg-black border-t border-gray-800"
     @click.away="open = false"
   >
@@ -74,45 +69,41 @@
   </div>
 </nav>
 
-    <!-- Hero – stuck at top until offers pushes it away -->
-    <section class="hero-wrapper sticky top-0 h-screen w-full z-10 overflow-hidden">
-        <!-- Video + overlay -->
-        <div class="relative w-full h-full overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/50 to-black/80 z-0"></div>
-            <video 
-                class="hero-bg absolute inset-0 w-full h-full object-cover scale-105 will-change-transform transition-transform duration-1500 ease-out z-10"
-                autoplay muted loop playsinline poster="assets/images/mainpg/SwampBuoy.jpg"
-            >
-                <source src="assets/images/mainpg/Buoy.mp4" type="video/mp4">
-            </video>
-        </div>
+<!-- Hero Section (now normal, not sticky) -->
+<section class="relative h-screen w-full overflow-hidden">
+    <!-- Video + overlay -->
+    <div class="relative w-full h-full overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/50 to-black/80 z-0"></div>
+        <video 
+            class="absolute inset-0 w-full h-full object-cover scale-105 will-change-transform transition-transform duration-1500 ease-out z-10"
+            autoplay muted loop playsinline poster="assets/images/mainpg/SwampBuoy.jpg"
+        >
+            <source src="assets/images/mainpg/Buoy.mp4" type="video/mp4">
+        </video>
+    </div>
 
-        <!-- Scroll-controlled dark fade overlay -->
-        <div id="hero-dark-fade" 
-             class="absolute inset-0 bg-black pointer-events-none transition-opacity duration-700 ease-out z-20"
-             style="opacity: 0;">
-        </div>
-
-        <!-- Hero content – centered -->
-        <div class="absolute inset-0 flex flex-col justify-center items-center text-center z-30 px-4 pointer-events-auto">
-            <div id="hero-title-group" class="hero-title-group transition-all duration-700 ease-out will-change-transform">
-                <h1 class="mb-4 animate-fade-in text-5xl md:text-7xl font-bold uppercase tracking-wide text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.8)]">
-                    River City Fish Co.
-                </h1>
-                <h3 class="text-2xl md:text-4xl font-bold uppercase tracking-wide mb-16 md:mb-24 text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.8)]">
-                    Seafood Bar and Grille
-                </h3>
-                <div class="flex flex-col sm:flex-row gap-6 sm:gap-8 justify-center items-center">
-                    <a href="#menu" class="btn-primary border-2 border-white text-white px-10 py-5 rounded-full font-bold uppercase hover:bg-red-700 transition-all transform hover:scale-105 shadow-lg">
-                        View Menu
-                    </a>
-                    <a href="#contact" class="btn-primary border-2 border-white text-white px-10 py-5 rounded-full font-bold uppercase hover:bg-white hover:text-[var(--primary-red)] transition-all transform hover:scale-105 shadow-lg">
-                        Book Now
-                    </a>
-                </div>
+    <!-- Hero content -->
+    <div class="absolute inset-0 flex flex-col justify-center items-center text-center z-30 px-4">
+        <div class="hero-title-group transition-all duration-700 ease-out will-change-transform">
+            <h1 class="mb-4 text-5xl md:text-7xl font-bold uppercase tracking-wide text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.8)]">
+                River City Fish Co.
+            </h1>
+            <h3 class="text-2xl md:text-4xl font-bold uppercase tracking-wide mb-16 md:mb-24 text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.8)]">
+                Seafood Bar and Grille
+            </h3>
+            <div class="flex flex-col sm:flex-row gap-6 sm:gap-8 justify-center items-center">
+                <a href="#menu" class="btn-primary border-2 border-white text-white px-10 py-5 rounded-full font-bold uppercase hover:bg-red-700 transition-all transform hover:scale-105 shadow-lg">
+                    View Menu
+                </a>
+                <a href="#contact" class="btn-primary border-2 border-white text-white px-10 py-5 rounded-full font-bold uppercase hover:bg-white hover:text-[var(--primary-red)] transition-all transform hover:scale-105 shadow-lg">
+                    Book Now
+                </a>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
+<!-- No spacer needed anymore -->
 
     <!-- Spacer to reserve initial full-screen height on load -->
     <div class="h-screen w-full bg-transparent"></div>
