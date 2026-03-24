@@ -454,6 +454,7 @@
             }
         });
     </script>
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
       AOS.init({
@@ -463,24 +464,26 @@
         offset: 120
       });
     </script>
+
+    <!-- Alpine.js - MUST be loaded for x-data / x-show etc. to work -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Navbar scroll effect -->
     <script>
-  const navbar = document.getElementById('navbar');
+      const navbar = document.getElementById('navbar');
 
-  function updateNavbar() {
-    if (window.scrollY > 50) {
-      navbar.classList.add('bg-black/70', 'backdrop-blur-md');
-      navbar.classList.remove('bg-black');
-    } else {
-      navbar.classList.remove('bg-black/70', 'backdrop-blur-md');
-      navbar.classList.add('bg-black');
-    }
-  }
+      function updateNavbar() {
+        if (window.scrollY > 50) {
+          navbar.classList.add('bg-black/70', 'backdrop-blur-md');
+          navbar.classList.remove('bg-black');
+        } else {
+          navbar.classList.remove('bg-black/70', 'backdrop-blur-md');
+          navbar.classList.add('bg-black');
+        }
+      }
 
-  // Run on scroll
-  window.addEventListener('scroll', updateNavbar);
-
-  // Run once on load (in case user refreshes while scrolled)
-  updateNavbar();
-</script>
+      window.addEventListener('scroll', updateNavbar);
+      updateNavbar();   // run once on load
+    </script>
 </body>
 </html>
