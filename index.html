@@ -1,407 +1,1113 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Buoy - Seafood Restaurant</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Poppins:wght@700;900&display=swap" rel="stylesheet">
-    <!-- Built Tailwind CSS -->
-    <link rel="stylesheet" href="output.css">
-    <!-- AOS CSS -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- Swiper CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Buoy — Seafood Bar & Grille | Jacksonville, FL</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <!-- Alpine.js — MUST be in <head> with defer so x-data works on page load -->
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <style>
+    /* ─── RESET & BASE ─────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
 
-    <!-- Main JS -->
-    <script type="module" src="main.js"></script>
-    <style>
-  /* output.css erroneously sets .hero-wrapper to position:fixed — override it */
-  .hero-wrapper { position: relative !important; height: 100vh !important; inset: unset !important; }
+    :root {
+      --red:       #c8102e;
+      --red-dark:  #a00d24;
+      --gold:      #c9a84c;
+      --black:     #0a0a0a;
+      --dark:      #111213;
+      --dark2:     #1a1b1c;
+      --dark3:     #222426;
+      --mid:       #2e3032;
+      --light:     #e8e4dd;
+      --white:     #ffffff;
+      --muted:     #8a8a8a;
+      --nav-h:     80px;
+      --font-head: 'Playfair Display', serif;
+      --font-cond: 'Barlow Condensed', sans-serif;
+      --font-body: 'Barlow', sans-serif;
+    }
 
-  /* Navbar: z-[999] and right-0 not compiled */
-  #navbar { z-index: 999 !important; right: 0 !important; }
+    body {
+      background: var(--black);
+      color: var(--light);
+      font-family: var(--font-body);
+      font-weight: 400;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
 
-  /* Main content top padding */
-  .pt-6 { padding-top: 1.5rem; }
+    img { display: block; max-width: 100%; }
+    a   { color: inherit; text-decoration: none; }
 
-  /* Nav responsive: hidden + md:flex conflict fix */
-  @media (min-width: 768px) {
-    .md\:flex   { display: flex !important; }
-    .md\:hidden { display: none !important; }
-  }
-</style>
+    /* ─── TYPOGRAPHY ───────────────────────────────────────── */
+    .label {
+      font-family: var(--font-cond);
+      font-weight: 700;
+      font-size: .75rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .section-title {
+      font-family: var(--font-cond);
+      font-weight: 900;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      line-height: 1;
+      color: var(--white);
+    }
+
+    .section-title span { color: var(--red); }
+
+    /* ─── UTILITY ──────────────────────────────────────────── */
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-family: var(--font-cond);
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: .85rem 2.2rem;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all .25s ease;
+      border: 2px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--red);
+      color: var(--white);
+      border-color: var(--red);
+    }
+    .btn-primary:hover {
+      background: var(--red-dark);
+      border-color: var(--red-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(200,16,46,.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border-color: var(--white);
+    }
+    .btn-outline:hover {
+      background: var(--white);
+      color: var(--black);
+      transform: translateY(-2px);
+    }
+
+    .divider {
+      width: 48px;
+      height: 3px;
+      background: var(--red);
+      margin: 1rem 0 1.5rem;
+    }
+
+    /* ─── ANIMATIONS ───────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── NAVBAR ───────────────────────────────────────────── */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      transition: background .35s ease, box-shadow .35s ease;
+      background: transparent;
+    }
+
+    #navbar.scrolled {
+      background: rgba(10,10,10,.96);
+      box-shadow: 0 2px 24px rgba(0,0,0,.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .nav-inner {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: var(--font-head);
+      font-size: 1.75rem;
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: .02em;
+    }
+    .nav-logo span { color: var(--red); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--font-cond);
+      font-weight: 700;
+      font-size: .95rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.85);
+      position: relative;
+      padding-bottom: 3px;
+      transition: color .2s;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 2px;
+      background: var(--red);
+      transition: width .25s ease;
+    }
+
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-reserve {
+      font-family: var(--font-cond);
+      font-weight: 700;
+      font-size: .85rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      background: var(--red);
+      color: var(--white);
+      padding: .55rem 1.4rem;
+      border-radius: 2px;
+      transition: background .2s, transform .2s;
+    }
+    .nav-reserve:hover { background: var(--red-dark); transform: translateY(-1px); }
+
+    /* Hamburger */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 6px;
+      background: none;
+      border: none;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 26px; height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: transform .3s, opacity .3s;
+    }
+    .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile drawer */
+    .nav-drawer {
+      display: none;
+      position: fixed;
+      top: var(--nav-h); left: 0; right: 0;
+      background: rgba(10,10,10,.98);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(255,255,255,.08);
+      z-index: 999;
+      padding: 1.5rem;
+      flex-direction: column;
+      gap: 0;
+    }
+    .nav-drawer.open { display: flex; }
+    .nav-drawer a {
+      font-family: var(--font-cond);
+      font-weight: 700;
+      font-size: 1.3rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--light);
+      padding: .9rem 0;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      transition: color .2s, padding-left .2s;
+    }
+    .nav-drawer a:hover { color: var(--red); padding-left: .5rem; }
+    .nav-drawer .btn-primary { margin-top: 1.2rem; text-align: center; justify-content: center; }
+
+    /* ─── HERO ─────────────────────────────────────────────── */
+    #hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transform: scale(1.06);
+      transition: transform 1.8s cubic-bezier(.25,.46,.45,.94);
+      will-change: transform;
+    }
+
+    #hero.loaded .hero-video { transform: scale(1); }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,.15) 0%,
+        rgba(0,0,0,.45) 40%,
+        rgba(0,0,0,.82) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 0 1.5rem;
+      animation: fadeUp .9s .3s both;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-cond);
+      font-weight: 700;
+      font-size: .8rem;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-title {
+      font-family: var(--font-cond);
+      font-weight: 900;
+      font-size: clamp(3.5rem, 10vw, 8rem);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--white);
+      line-height: .95;
+      margin-bottom: .4rem;
+      text-shadow: 0 4px 32px rgba(0,0,0,.6);
+    }
+
+    .hero-subtitle {
+      font-family: var(--font-head);
+      font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: .04em;
+      margin-bottom: 2.5rem;
+      font-style: italic;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .5rem;
+      opacity: .7;
+      animation: fadeIn 1.2s 1.5s both;
+    }
+    .hero-scroll span {
+      font-family: var(--font-cond);
+      font-size: .7rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    .hero-scroll-line {
+      width: 1px; height: 48px;
+      background: linear-gradient(to bottom, var(--white), transparent);
+      animation: scrollPulse 2s infinite;
+    }
+    @keyframes scrollPulse {
+      0%,100% { opacity: .5; transform: scaleY(1); }
+      50%      { opacity: 1;  transform: scaleY(1.15); }
+    }
+
+    /* ─── HOURS BAR ─────────────────────────────────────────── */
+    .hours-bar {
+      background: var(--red);
+      padding: .9rem 1.5rem;
+      overflow: hidden;
+    }
+    .hours-ticker {
+      display: flex;
+      gap: 4rem;
+      white-space: nowrap;
+      animation: ticker 28s linear infinite;
+      width: max-content;
+    }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .hours-ticker span {
+      font-family: var(--font-cond);
+      font-weight: 700;
+      font-size: .85rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    .hours-ticker .dot { color: rgba(255,255,255,.5); font-size: .5rem; vertical-align: middle; }
+
+    /* ─── SECTIONS (shared) ─────────────────────────────────── */
+    section { padding: 5rem 0; }
+
+    .section-head { margin-bottom: 3rem; }
+    .section-head-center { text-align: center; }
+    .section-head-center .divider { margin-left: auto; margin-right: auto; }
+
+    /* ─── OFFERS ────────────────────────────────────────────── */
+    #offers { background: var(--dark); }
+
+    .offers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .offer-card {
+      background: var(--dark2);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+    .offer-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0,0,0,.5);
+    }
+
+    .offer-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform .5s ease;
+    }
+    .offer-card:hover img { transform: scale(1.04); }
+
+    .offer-card-body {
+      padding: 1.5rem;
+    }
+
+    .offer-day {
+      font-family: var(--font-cond);
+      font-weight: 900;
+      font-size: 1.5rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: .4rem;
+    }
+
+    .offer-card-body p {
+      font-size: .9rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ─── SPLIT SECTIONS ────────────────────────────────────── */
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .split.reverse { direction: rtl; }
+    .split.reverse > * { direction: ltr; }
+
+    .split-img {
+      position: relative;
+      overflow: hidden;
+      border-radius: 4px;
+    }
+    .split-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 4px;
+      pointer-events: none;
+    }
+    .split-img img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      transition: transform .6s ease;
+    }
+    .split-img:hover img { transform: scale(1.04); }
+
+    /* Accent box on image */
+    .split-img .img-accent {
+      position: absolute;
+      bottom: -1.5rem; right: -1.5rem;
+      width: 80px; height: 80px;
+      background: var(--red);
+      border-radius: 2px;
+      z-index: -1;
+    }
+
+    .split-text { padding: 1rem 0; }
+
+    .split-text p {
+      color: rgba(232,228,221,.75);
+      font-size: 1.05rem;
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    /* ─── NEWS CAROUSEL ─────────────────────────────────────── */
+    #news { background: var(--dark); }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .news-card {
+      background: var(--dark2);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .news-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 36px rgba(0,0,0,.5);
+    }
+    .news-card img {
+      width: 100%; height: 220px;
+      object-fit: cover;
+      transition: transform .5s;
+    }
+    .news-card:hover img { transform: scale(1.04); }
+    .news-card-body { padding: 1.5rem; }
+    .news-date {
+      font-family: var(--font-cond);
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: .6rem;
+    }
+    .news-card-body h3 {
+      font-family: var(--font-cond);
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: .03em;
+      color: var(--white);
+      margin-bottom: .6rem;
+      line-height: 1.3;
+    }
+    .news-card-body p { font-size: .9rem; color: var(--muted); }
+    .news-read {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      margin-top: 1rem;
+      font-family: var(--font-cond);
+      font-weight: 700;
+      font-size: .8rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--red);
+      transition: gap .2s;
+    }
+    .news-read:hover { gap: .6rem; }
+
+    /* ─── CAREERS ───────────────────────────────────────────── */
+    #careers {
+      background: var(--dark2);
+      text-align: center;
+    }
+
+    .careers-inner {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .careers-inner p {
+      color: rgba(232,228,221,.7);
+      font-size: 1.1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ─── FOOTER ────────────────────────────────────────────── */
+    footer {
+      background: var(--black);
+      border-top: 1px solid rgba(255,255,255,.07);
+      padding: 5rem 0 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 4rem;
+      margin-bottom: 4rem;
+    }
+
+    .footer-brand {
+      font-family: var(--font-head);
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--white);
+      margin-bottom: 1.2rem;
+    }
+    .footer-brand span { color: var(--red); }
+
+    .footer-tagline {
+      font-size: .95rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+
+    .footer-contact a {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      color: rgba(232,228,221,.6);
+      font-size: .9rem;
+      margin-bottom: .65rem;
+      transition: color .2s;
+    }
+    .footer-contact a:hover { color: var(--white); }
+    .footer-contact i { color: var(--red); width: 14px; }
+
+    .footer-socials {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .footer-socials a {
+      width: 40px; height: 40px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: .95rem;
+      transition: all .2s;
+    }
+    .footer-socials a:hover {
+      background: var(--red);
+      border-color: var(--red);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    .footer-col h4 {
+      font-family: var(--font-cond);
+      font-weight: 900;
+      font-size: .85rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+      padding-bottom: .75rem;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: .7rem; }
+    .footer-links a {
+      color: var(--muted);
+      font-size: .9rem;
+      transition: color .2s, padding-left .2s;
+      display: inline-block;
+    }
+    .footer-links a:hover { color: var(--white); padding-left: .3rem; }
+
+    .footer-hours li {
+      display: flex;
+      justify-content: space-between;
+      font-size: .88rem;
+      color: var(--muted);
+      padding: .35rem 0;
+      border-bottom: 1px solid rgba(255,255,255,.04);
+      gap: 1rem;
+    }
+    .footer-hours li strong { color: rgba(232,228,221,.7); font-weight: 600; }
+    .footer-hours li span { text-align: right; }
+    .footer-hours li.closed span { color: var(--red); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.06);
+      padding-top: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-bottom p {
+      font-size: .82rem;
+      color: rgba(255,255,255,.3);
+    }
+
+    .footer-bottom a:hover { color: var(--white); }
+
+    /* ─── BACK TO TOP ───────────────────────────────────────── */
+    #back-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 500;
+      width: 44px; height: 44px;
+      background: var(--red);
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity .3s, transform .3s, background .2s;
+      border: none;
+    }
+    #back-top.visible { opacity: 1; transform: translateY(0); }
+    #back-top:hover { background: var(--red-dark); }
+    #back-top i { color: var(--white); font-size: .9rem; }
+
+    /* ─── RESPONSIVE ────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .nav-links, .nav-reserve { display: none; }
+      .nav-toggle { display: flex; }
+      .split { grid-template-columns: 1fr; gap: 2.5rem; }
+      .split.reverse { direction: ltr; }
+      .split-img img { height: 300px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+
+    @media (max-width: 600px) {
+      section { padding: 3.5rem 0; }
+      .hero-cta { flex-direction: column; align-items: center; }
+    }
+  </style>
 </head>
-<body class="bg-gray-950 text-gray-100 antialiased">
+<body>
 
-<!-- NAVBAR -->
-<nav id="navbar"
-     class="fixed top-0 left-0 right-0 z-[999] border-b border-gray-800 transition-all duration-300"
-     style="background-color: rgba(0,0,0,0.95);"
-     x-data="{ open: false }">
+<!-- ═══════════════════════ NAVBAR ═══════════════════════ -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">The <span>Buoy</span></a>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between items-center h-20">
-      <!-- Logo -->
-      <a href="#" class="text-3xl font-bold text-white tracking-tight">The Buoy</a>
+    <ul class="nav-links">
+      <li><a href="#offers">Specials</a></li>
+      <li><a href="#menu-section">Menu</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="#news">News</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
 
-      <!-- Desktop Menu -->
-      <div class="hidden md:flex space-x-10">
-        <a href="#home" class="text-gray-300 hover:text-white transition">Home</a>
-        <a href="#menu" class="text-gray-300 hover:text-white transition">Our Menu</a>
-        <a href="#team" class="text-gray-300 hover:text-white transition">Meet the Team</a>
-        <a href="#contact" class="text-gray-300 hover:text-white transition">Contact</a>
-      </div>
+    <a href="#contact" class="nav-reserve">Reserve a Table</a>
 
-      <!-- Mobile Hamburger -->
-      <button
-        @click="open = !open"
-        class="md:hidden text-white focus:outline-none"
-        aria-label="Toggle menu">
-        <svg x-show="!open" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-        <svg x-show="open" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      </button>
-    </div>
-  </div>
-
-  <!-- Mobile Menu -->
-  <div
-    x-show="open"
-    x-transition
-    class="md:hidden border-t border-gray-800"
-    style="background-color: #000000;"
-    @click.away="open = false">
-    <div class="px-4 py-6 space-y-4 text-center">
-      <a href="#home" @click="open = false" class="block text-gray-300 hover:text-white text-xl transition">Home</a>
-      <a href="#menu" @click="open = false" class="block text-gray-300 hover:text-white text-xl transition">Our Menu</a>
-      <a href="#team" @click="open = false" class="block text-gray-300 hover:text-white text-xl transition">Meet the Team</a>
-      <a href="#contact" @click="open = false" class="block text-gray-300 hover:text-white text-xl transition">Contact</a>
-    </div>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero-wrapper relative h-screen w-full overflow-hidden">
-  <div class="relative w-full h-full overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/50 to-black/80 z-0"></div>
-    <video
-      class="absolute inset-0 w-full h-full object-cover scale-105 will-change-transform transition-transform duration-1500 ease-out z-10"
-      autoplay muted loop playsinline poster="assets/images/mainpg/SwampBuoy.jpg">
-      <source src="assets/images/mainpg/Buoy.mp4" type="video/mp4">
-    </video>
+<!-- Mobile Drawer -->
+<nav class="nav-drawer" id="nav-drawer">
+  <a href="#offers"       onclick="closeDrawer()">Daily Specials</a>
+  <a href="#menu-section" onclick="closeDrawer()">Our Menu</a>
+  <a href="#market"       onclick="closeDrawer()">Fish Market</a>
+  <a href="#events"       onclick="closeDrawer()">Events</a>
+  <a href="#news"         onclick="closeDrawer()">News</a>
+  <a href="#careers"      onclick="closeDrawer()">Careers</a>
+  <a href="#contact"      onclick="closeDrawer()">Contact</a>
+  <a href="#contact" class="btn btn-primary" onclick="closeDrawer()">Reserve a Table</a>
+</nav>
+
+<!-- ═══════════════════════ HERO ═══════════════════════ -->
+<section id="hero">
+  <video class="hero-video" autoplay muted loop playsinline poster="assets/images/mainpg/SwampBuoy.jpg">
+    <source src="assets/images/mainpg/Buoy.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">Jacksonville, Florida · Est. 2025</p>
+    <h1 class="hero-title">The Buoy</h1>
+    <p class="hero-subtitle">Seafood Bar &amp; Grille</p>
+    <div class="hero-cta">
+      <a href="#menu-section" class="btn btn-primary">Explore the Menu</a>
+      <a href="#contact"      class="btn btn-outline">Reserve a Table</a>
+    </div>
   </div>
 
-  <!-- Dark fade overlay for scroll effect -->
-  <div id="hero-dark-fade" class="absolute inset-0 z-20 bg-black pointer-events-none" style="opacity: 0;"></div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
 
-  <!-- Hero content -->
-  <div class="absolute inset-0 flex flex-col justify-center items-center text-center z-30 px-4">
-    <div id="hero-title-group" class="hero-title-group transition-all duration-700 ease-out will-change-transform">
-      <h1 class="mb-4 text-5xl md:text-7xl font-bold uppercase tracking-wide text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.8)]">
-        River City Fish Co.
-      </h1>
-      <h3 class="text-2xl md:text-4xl font-bold uppercase tracking-wide mb-16 md:mb-24 text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.8)]">
-        Seafood Bar and Grille
-      </h3>
-      <div class="flex flex-col sm:flex-row gap-6 sm:gap-8 justify-center items-center">
-        <a href="#menu" class="btn-primary border-2 border-white text-white px-10 py-5 rounded-full font-bold uppercase hover:bg-red-700 transition-all transform hover:scale-105 shadow-lg">
-          View Menu
-        </a>
-        <a href="#contact" class="btn-primary border-2 border-white text-white px-10 py-5 rounded-full font-bold uppercase hover:bg-white hover:text-[var(--primary-red)] transition-all transform hover:scale-105 shadow-lg">
-          Book Now
-        </a>
+<!-- ═══════════════════════ HOURS TICKER ═══════════════════════ -->
+<div class="hours-bar" aria-hidden="true">
+  <div class="hours-ticker" id="ticker">
+    <span>Mon: Closed</span><span class="dot">●</span>
+    <span>Tue–Thu: 4pm – 9pm</span><span class="dot">●</span>
+    <span>Fri: 4pm – 10pm</span><span class="dot">●</span>
+    <span>Sat: 11am – 10pm</span><span class="dot">●</span>
+    <span>Sun: 11am – 9pm</span><span class="dot">●</span>
+    <span>Happy Hour Varies — Ask Your Server!</span><span class="dot">●</span>
+    <span>4323 Herschel St, Jacksonville, FL 32210</span><span class="dot">●</span>
+    <!-- duplicate for seamless loop -->
+    <span>Mon: Closed</span><span class="dot">●</span>
+    <span>Tue–Thu: 4pm – 9pm</span><span class="dot">●</span>
+    <span>Fri: 4pm – 10pm</span><span class="dot">●</span>
+    <span>Sat: 11am – 10pm</span><span class="dot">●</span>
+    <span>Sun: 11am – 9pm</span><span class="dot">●</span>
+    <span>Happy Hour Varies — Ask Your Server!</span><span class="dot">●</span>
+    <span>4323 Herschel St, Jacksonville, FL 32210</span><span class="dot">●</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════ DAILY SPECIALS ═══════════════════════ -->
+<section id="offers">
+  <div class="container">
+    <div class="section-head section-head-center reveal">
+      <p class="label">Every Week</p>
+      <div class="divider"></div>
+      <h2 class="section-title">Daily <span>Specials</span></h2>
+    </div>
+    <div class="offers-grid">
+
+      <div class="offer-card reveal">
+        <img src="assets/images/mainpg/beersbar.jpg" alt="Tuesday Beer Special" loading="lazy">
+        <div class="offer-card-body">
+          <p class="offer-day">Tuesday at $19</p>
+          <p>Beer pitchers for just $19, paired with select menu items. Dine-in only. Cannot be combined with other offers. No cash value.</p>
+        </div>
+      </div>
+
+      <div class="offer-card reveal">
+        <img src="assets/images/mainpg/winebar.jpg" alt="Wednesday Wine Special" loading="lazy">
+        <div class="offer-card-body">
+          <p class="offer-day">Wednesday: 50% Off Wine</p>
+          <p>Half off all bottles and glasses of wine every Wednesday. Exclusions may apply. Ask your server for details.</p>
+        </div>
+      </div>
+
+      <div class="offer-card reveal">
+        <img src="assets/images/mainpg/wingsbar.jpg" alt="Thursday Wings Special" loading="lazy">
+        <div class="offer-card-body">
+          <p class="offer-day">Thursday: 50% Off Wings</p>
+          <p>Our legendary wings, half price every Thursday night. Dine-in only. Conditions apply.</p>
+        </div>
+      </div>
+
+      <div class="offer-card reveal">
+        <img src="assets/images/mainpg/kidsbar.jpg" alt="Sunday Kids Menu" loading="lazy">
+        <div class="offer-card-body">
+          <p class="offer-day">Sunday: $5 Kids' Menu</p>
+          <p>One child eats for just $5 with each adult entrée. Perfect for family Sunday brunch or dinner. Conditions apply.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ SPRING MENU ═══════════════════════ -->
+<section id="menu-section" style="background: var(--dark2);">
+  <div class="container">
+    <div class="split">
+      <div class="split-text reveal">
+        <p class="label">Spring 2026</p>
+        <div class="divider"></div>
+        <h2 class="section-title">Discover<br>What's <span>New</span></h2>
+        <p>The Greek Goat Cheese, The Heavyweight, the Goat Cheese &amp; Hot Honey Pidzz, and the Maple Crunch Bread are hitting the ice. Fresh flavours, sweet-and-spicy vibes, and a burger that plays in the big leagues — explore the full spring line-up now.</p>
+        <a href="#menu-link" class="btn btn-primary">View the Menu</a>
+      </div>
+      <div class="split-img reveal">
+        <img src="assets/images/mainpg/MintJ.jpg" alt="Spring Menu Highlight" loading="lazy">
       </div>
     </div>
   </div>
 </section>
 
-<!-- MAIN CONTENT -->
-<main class="w-full bg-gray-950 relative z-10 pt-6">
-  <div class="max-w-7xl mx-auto px-4 py-12">
-
-    <section id="offers" class="py-12 md:py-16">
-      <div class="offers-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="offer-card bg-slate-800 rounded-lg shadow-md overflow-hidden transition-all duration-400 hover:shadow-xl hover:-translate-y-3">
-          <img src="/assets/images/mainpg/beersbar.jpg" alt="Tuesday Offer" class="w-full h-48 object-cover">
-          <div class="content p-6">
-            <h3 class="mb-2 text-[var(--primary-red)] text-2xl font-bold uppercase tracking-wide">Tuesday at $19</h3>
-            <p class="text-sm text-gray-300">Beer pitchers at $19, specific pizzas, etc. Dining room only. Offer cannot be combined with any other offer. No cash value.</p>
-          </div>
-        </div>
-        <div class="offer-card bg-slate-800 rounded-lg shadow-md overflow-hidden transition-all duration-400 hover:shadow-xl hover:-translate-y-3">
-          <img src="/assets/images/mainpg/winebar.jpg" alt="Wednesday Offer" class="w-full h-48 object-cover">
-          <div class="content p-6">
-            <h3 class="mb-2 text-[var(--primary-red)] text-2xl font-bold uppercase tracking-wide">Wednesday: 50% off wines</h3>
-            <p class="text-sm text-gray-300">Details on wine offers. Exclusivity and disclaimers apply.</p>
-          </div>
-        </div>
-        <div class="offer-card bg-slate-800 rounded-lg shadow-md overflow-hidden transition-all duration-400 hover:shadow-xl hover:-translate-y-3">
-          <img src="/assets/images/mainpg/wingsbar.jpg" alt="Thursday Offer" class="w-full h-48 object-cover">
-          <div class="content p-6">
-            <h3 class="mb-2 text-[var(--primary-red)] text-2xl font-bold uppercase tracking-wide">Thursday: 50% off wings</h3>
-            <p class="text-sm text-gray-300">Wing offers. Conditions apply.</p>
-          </div>
-        </div>
-        <div class="offer-card bg-slate-800 rounded-lg shadow-md overflow-hidden transition-all duration-400 hover:shadow-xl hover:-translate-y-3">
-          <img src="/assets/images/mainpg/kidsbar.jpg" alt="Sunday Offer" class="w-full h-48 object-cover">
-          <div class="content p-6">
-            <h3 class="mb-2 text-[var(--primary-red)] text-2xl font-bold uppercase tracking-wide">Sunday: $5 Kids' Menu</h3>
-            <ul class="text-sm text-gray-300 mb-4">
-              <li>CHICKEN BURGER & CAESAR</li>
-            </ul>
-            <p class="text-sm text-gray-300">Conditions: One child per adult, etc.</p>
-          </div>
-        </div>
+<!-- ═══════════════════════ FISH MARKET ═══════════════════════ -->
+<section id="market" style="background: var(--dark);">
+  <div class="container">
+    <div class="split reverse">
+      <div class="split-text reveal">
+        <p class="label">Fresh Catch</p>
+        <div class="divider"></div>
+        <h2 class="section-title">This Week's <span>Market</span></h2>
+        <p>Each season we identify the freshest seafood from local and regional waters. Our market changes weekly — visit us to see what just came in, hand-selected and ready to take home or enjoy right here.</p>
+        <a href="#products-link" class="btn btn-primary">See This Week's Catch</a>
       </div>
-    </section>
-
-    <!-- Spring Menu Highlight -->
-    <section id="spring-menu" class="py-6 md:py-10 bg-gray-950">
-      <div class="max-w-7xl mx-auto px-4">
-        <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-          <div class="text-wrapper lg:w-1/2 order-2 lg:order-1" data-aos="fade-up" data-aos-delay="100">
-            <div class="title-separator flex items-center gap-4 mb-6" data-aos="fade-up" data-aos-delay="150">
-              <span class="title like-h5 text-[var(--primary-red)] uppercase font-bold tracking-wider">
-                OUR SPRING MENU IS HERE
-              </span>
-              <span class="lines flex-1 h-px bg-gray-600"></span>
-            </div>
-            <h2 class="text-4xl md:text-5xl font-bold uppercase tracking-wide mb-6 text-gray-100" data-aos="fade-up" data-aos-delay="250">
-              DISCOVER WHAT'S NEW
-            </h2>
-            <div class="text-lg md:text-xl leading-relaxed text-gray-200 mb-8" data-aos="fade-up" data-aos-delay="400">
-              <p>The Greek Goat Cheese, The Heavyweight, the Goat Cheese & Hot Honey Pidzz, and the Maple Crunch Bread are hitting the ice. Fresh flavours, sweet‑and‑spicy vibes, and a burger that plays in the big leagues — explore the full spring line-up now.</p>
-            </div>
-            <a href="#menu-link" class="btn-primary inline-block bg-[var(--primary-red)] text-white px-10 py-5 rounded-full font-bold uppercase hover:bg-red-700 transition-all shadow-lg" data-aos="fade-up" data-aos-delay="550">
-              View the Menu
-            </a>
-          </div>
-          <div class="image-content lg:w-1/2 order-1 lg:order-2 overflow-hidden rounded-xl shadow-2xl h-80 lg:h-[480px] flex items-center" data-aos="fade-up" data-aos-delay="300">
-            <img src="/assets/images/mainpg/MintJ.jpg" alt="Spring Menu Highlight" class="rellax w-full h-[110%] object-cover object-center" data-rellax-speed="-1.2" data-rellax-percentage="0.4">
-          </div>
-        </div>
+      <div class="split-img reveal">
+        <img src="assets/images/mainpg/Seafood1.jpg" alt="Fresh Seafood Market" loading="lazy">
       </div>
-    </section>
-
-    <!-- Products Section -->
-    <section id="products" class="py-6 md:py-10 bg-gray-950">
-      <div class="max-w-7xl mx-auto px-4">
-        <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-          <div class="image-content lg:w-1/2 order-1 lg:order-1" data-aos="fade-up" data-aos-delay="300">
-            <img src="/assets/images/mainpg/Seafood1.jpg" alt="New Sauces at Grocery Stores" class="rellax w-full h-[110%] object-cover object-center" data-rellax-speed="-1.2" data-rellax-percentage="0.4">
-          </div>
-          <div class="text-wrapper lg:w-1/2 order-2 lg:order-2 text-center lg:text-left" data-aos="fade-up" data-aos-delay="100">
-            <div class="title-separator flex items-center justify-center lg:justify-start gap-4 mb-6" data-aos="fade-up" data-aos-delay="150">
-              <span class="title like-h5 text-[var(--primary-red)] uppercase font-bold tracking-wider">
-                Check out our Fresh Fish Market
-              </span>
-              <span class="lines flex-1 h-px bg-gray-600 lg:flex-none lg:w-32"></span>
-            </div>
-            <h2 class="text-4xl md:text-5xl font-bold uppercase tracking-wide mb-6 text-gray-100" data-aos="fade-up" data-aos-delay="250">
-              This Weeks Offerings
-            </h2>
-            <p class="text-lg md:text-xl leading-relaxed text-gray-200 mb-8" data-aos="fade-up" data-aos-delay="400">
-              Each season we identify the freshest seafood from the area
-            </p>
-            <a href="#products-link" class="btn-primary inline-block bg-[var(--primary-red)] text-white px-10 py-5 rounded-full font-bold uppercase hover:bg-red-700 transition-all shadow-lg" data-aos="fade-up" data-aos-delay="550">
-              Discover Them
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Events Section -->
-    <section id="events" class="py-6 md:py-10 bg-gray-950">
-      <div class="max-w-7xl mx-auto px-4">
-        <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-          <div class="text-wrapper lg:w-1/2 order-2 lg:order-1" data-aos="fade-up" data-aos-delay="100">
-            <div class="title-separator flex items-center justify-center lg:justify-start gap-4 mb-6" data-aos="fade-up" data-aos-delay="150">
-              <span class="title like-h5 text-[var(--primary-red)] uppercase font-bold tracking-wider">
-                SPORT EVENTS
-              </span>
-              <span class="lines flex-1 h-px bg-gray-600 lg:flex-none lg:w-32"></span>
-            </div>
-            <h2 class="text-4xl md:text-5xl font-bold uppercase tracking-wide mb-6 text-gray-100" data-aos="fade-up" data-aos-delay="250">
-              EVENTS NOT TO BE MISSED
-            </h2>
-            <p class="text-lg md:text-xl leading-relaxed text-gray-200 mb-8" data-aos="fade-up" data-aos-delay="400">
-              Catch every game on our big screens with friends, great food, and the best atmosphere in town. Check out the full schedule below!
-            </p>
-            <a href="#events-link" class="btn-primary inline-block bg-[var(--primary-red)] text-white px-10 py-5 rounded-full font-bold uppercase hover:bg-red-700 transition-all shadow-lg" data-aos="fade-up" data-aos-delay="550">
-              View All Events
-            </a>
-          </div>
-          <div class="image-content lg:w-1/2 order-1 lg:order-2 overflow-hidden rounded-xl shadow-2xl h-80 lg:h-[480px] flex items-center" data-aos="fade-up" data-aos-delay="300">
-            <img src="/assets/images/mainpg/beersbar.jpg" alt="Sports Events at The Buoy" class="rellax w-full h-[110%] object-cover object-center" data-rellax-speed="-1.2" data-rellax-percentage="0.4">
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- News section -->
-    <section id="news" class="py-12 md:py-16 bg-gray-950">
-      <h2 class="text-3xl md:text-4xl font-bold uppercase tracking-wide text-center mb-8 text-gray-100">More about us...</h2>
-      <div class="news-carousel swiper my-8">
-        <div class="swiper-wrapper">
-          <!-- Slide 1 -->
-          <div class="swiper-slide news-card bg-slate-800 rounded-lg shadow-md overflow-hidden transition-all hover:shadow-xl">
-            <img src="/assets/images/mainpg/breaking.avif" alt="Breaking Ground on the new Restaurant" class="w-full h-48 object-cover">
-            <div class="p-6">
-              <h3 class="text-lg font-bold text-gray-100 mb-2">Sept 2025: Breaking Ground on the new Restaurant</h3>
-              <p class="text-sm text-gray-300">The construction has begun! Follow our journey.</p>
-              <a href="#blog-post-1" class="mt-4 inline-block text-[var(--primary-red)] hover:underline">Read More →</a>
-            </div>
-          </div>
-          <!-- Slide 2 -->
-          <div class="swiper-slide news-card bg-slate-800 rounded-lg shadow-md overflow-hidden transition-all hover:shadow-xl">
-            <img src="/assets/images/mainpg/swedish.jpg" alt="Meet our Executive Chefs" class="w-full h-48 object-cover">
-            <div class="p-6">
-              <h3 class="text-lg font-bold text-gray-100 mb-2">February 2026: Meet our Executive Chefs</h3>
-              <p class="text-sm text-gray-300">Get to know the team behind the menu.</p>
-              <a href="#blog-post-2" class="mt-4 inline-block text-[var(--primary-red)] hover:underline">Read More →</a>
-            </div>
-          </div>
-          <!-- Slide 3 -->
-          <div class="swiper-slide news-card bg-slate-800 rounded-lg shadow-md overflow-hidden transition-all hover:shadow-xl">
-            <img src="/assets/images/mainpg/menu.jpg" alt="How's and Why's of our Menu" class="w-full h-48 object-cover">
-            <div class="p-6">
-              <h3 class="text-lg font-bold text-gray-100 mb-2">April 2026: How's and Why's of our Menu</h3>
-              <p class="text-sm text-gray-300">The story behind every dish.</p>
-              <a href="#blog-post-3" class="mt-4 inline-block text-[var(--primary-red)] hover:underline">Read More →</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Careers section -->
-    <section id="careers" class="py-12 md:py-18">
-      <h2 class="text-3xl md:text-4xl font-bold uppercase tracking-wide text-center mb-4 text-gray-100">Get in on the action</h2>
-      <h3 class="text-2xl font-bold uppercase tracking-wide text-center mb-8 text-gray-100">We want you on our team</h3>
-      <p class="text-base md:text-lg leading-relaxed text-center mb-12 text-gray-200">Job opportunities description.</p>
-      <a href="#jobs-link" class="btn-primary block mx-auto">See jobs</a>
-    </section>
-
+    </div>
   </div>
-</main>
+</section>
 
-<!-- Footer -->
-<footer class="bg-black text-gray-300 py-16 md:py-20">
-  <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 text-center md:text-left">
-      <div>
-        <h3 class="text-3xl md:text-4xl font-bold uppercase tracking-wider text-[var(--primary-red)] mb-6">The Buoy</h3>
-        <p class="text-sm md:text-base leading-relaxed mb-4">
-          Seafood Bar & Grille<br>
-          4323 Herschel St, Jacksonville, FL 32210
-        </p>
-        <p class="text-sm md:text-base mb-2">
-          <a href="mailto:info@thebuoyjax.com" class="hover:text-white transition-colors">info@thebuoyjax.com</a>
-        </p>
-        <p class="text-sm md:text-base mb-6">
-          <a href="tel:+19043810909" class="hover:text-white transition-colors">(904) 381-0909</a>
-        </p>
-        <p class="text-sm">
-          © 2026 The Buoy. All Rights Reserved.<br>
-          <a href="#privacy" class="hover:text-[var(--primary-red)] transition-colors">Privacy Policy</a> •
-          <a href="#terms" class="hover:text-[var(--primary-red)] transition-colors">Terms of Service</a>
-        </p>
+<!-- ═══════════════════════ EVENTS ═══════════════════════ -->
+<section id="events" style="background: var(--dark2);">
+  <div class="container">
+    <div class="split">
+      <div class="split-text reveal">
+        <p class="label">Sport &amp; Live Events</p>
+        <div class="divider"></div>
+        <h2 class="section-title">Events Not To <span>Miss</span></h2>
+        <p>Catch every game on our big screens with friends, great food, and the best atmosphere in Jacksonville. Cold beers, hot wings, and a crowd that knows how to cheer. Check out the full schedule below!</p>
+        <a href="#events-link" class="btn btn-primary">View All Events</a>
       </div>
-      <div>
-        <h4 class="text-xl md:text-2xl font-semibold uppercase tracking-wide mb-6 text-[var(--primary-red)]">Quick Links</h4>
-        <ul class="space-y-3 text-base">
-          <li><a href="#menu" class="hover:text-white transition-colors">Menu</a></li>
-          <li><a href="#events" class="hover:text-white transition-colors">Events</a></li>
-          <li><a href="#market" class="hover:text-white transition-colors">Seafood Market</a></li>
-          <li><a href="#news" class="hover:text-white transition-colors">News</a></li>
-          <li><a href="#jobs" class="hover:text-white transition-colors">Jobs</a></li>
-          <li><a href="#contact" class="hover:text-white transition-colors">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="text-xl md:text-2xl font-semibold uppercase tracking-wide mb-6 text-[var(--primary-red)]">Hours</h4>
-        <ul class="space-y-3 text-base">
-          <li><strong>Monday:</strong> Closed</li>
-          <li><strong>Tue–Thu:</strong> 4:00 pm – 9:00 pm</li>
-          <li><strong>Friday:</strong> 4:00 pm – 10:00 pm</li>
-          <li><strong>Saturday:</strong> 11:00 am – 10:00 pm</li>
-          <li><strong>Sunday:</strong> 11:00 am – 9:00 pm</li>
-        </ul>
-        <p class="text-sm text-gray-500 mt-4 italic">Happy hour varies — check with us!</p>
+      <div class="split-img reveal">
+        <img src="assets/images/mainpg/beersbar.jpg" alt="Sports Events at The Buoy" loading="lazy">
       </div>
     </div>
+  </div>
+</section>
 
-    <!-- Social -->
-    <div class="mt-12 pt-8 border-t border-gray-800 text-center">
-      <h4 class="text-xl font-semibold uppercase tracking-wide mb-6 text-[var(--primary-red)]">Connect</h4>
-      <div class="flex justify-center gap-10 text-4xl">
-        <a href="https://facebook.com/thebuoyjax" target="_blank" class="hover:text-[var(--primary-red)] transition-colors"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://instagram.com/thebuoyjax" target="_blank" class="hover:text-[var(--primary-red)] transition-colors"><i class="fab fa-instagram"></i></a>
+<!-- ═══════════════════════ NEWS ═══════════════════════ -->
+<section id="news">
+  <div class="container">
+    <div class="section-head section-head-center reveal">
+      <p class="label">Latest from The Buoy</p>
+      <div class="divider"></div>
+      <h2 class="section-title">More About <span>Us</span></h2>
+    </div>
+    <div class="news-grid">
+
+      <article class="news-card reveal">
+        <img src="assets/images/mainpg/breaking.avif" alt="Breaking Ground" loading="lazy">
+        <div class="news-card-body">
+          <p class="news-date">September 2025</p>
+          <h3>Breaking Ground on the New Restaurant</h3>
+          <p>The construction has begun! Follow our journey as we build something special for Jacksonville.</p>
+          <a href="#blog-post-1" class="news-read">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </article>
+
+      <article class="news-card reveal">
+        <img src="assets/images/mainpg/swedish.jpg" alt="Meet our Chefs" loading="lazy">
+        <div class="news-card-body">
+          <p class="news-date">February 2026</p>
+          <h3>Meet Our Executive Chefs</h3>
+          <p>Get to know the talented team behind every dish on our menu.</p>
+          <a href="#blog-post-2" class="news-read">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </article>
+
+      <article class="news-card reveal">
+        <img src="assets/images/mainpg/menu.jpg" alt="Menu Story" loading="lazy">
+        <div class="news-card-body">
+          <p class="news-date">April 2026</p>
+          <h3>The How's &amp; Why's of Our Menu</h3>
+          <p>The philosophy and story behind every dish we serve — from ocean to table.</p>
+          <a href="#blog-post-3" class="news-read">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ CAREERS ═══════════════════════ -->
+<section id="careers">
+  <div class="container">
+    <div class="careers-inner reveal" style="text-align:center;">
+      <p class="label">Join the Crew</p>
+      <div class="divider" style="margin:1rem auto 1.5rem;"></div>
+      <h2 class="section-title">Get in on <span>the Action</span></h2>
+      <br>
+      <h3 style="font-family:var(--font-cond);font-size:1.4rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;">We Want You on Our Team</h3>
+      <p>We're building something great here and we need great people to make it happen. Whether you're front-of-house, back-of-house, or everything in between — if you've got passion and hustle, we want to hear from you.</p>
+      <a href="#jobs-link" class="btn btn-primary" style="margin-top:2rem;">See Open Positions</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+<footer id="contact">
+  <div class="container">
+    <div class="footer-grid">
+
+      <!-- Brand -->
+      <div>
+        <div class="footer-brand">The <span>Buoy</span></div>
+        <p class="footer-tagline">Seafood Bar &amp; Grille<br>Jacksonville's freshest catch, served right.</p>
+        <div class="footer-contact">
+          <a href="https://maps.google.com/?q=4323+Herschel+St+Jacksonville+FL+32210" target="_blank">
+            <i class="fas fa-map-marker-alt"></i> 4323 Herschel St, Jacksonville, FL 32210
+          </a>
+          <a href="tel:+19043810909">
+            <i class="fas fa-phone"></i> (904) 381-0909
+          </a>
+          <a href="mailto:info@thebuoyjax.com">
+            <i class="fas fa-envelope"></i> info@thebuoyjax.com
+          </a>
+        </div>
+        <div class="footer-socials">
+          <a href="https://facebook.com/thebuoyjax" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://instagram.com/thebuoyjax" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
       </div>
+
+      <!-- Quick Links -->
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul class="footer-links">
+          <li><a href="#menu-section">Spring Menu</a></li>
+          <li><a href="#offers">Daily Specials</a></li>
+          <li><a href="#market">Seafood Market</a></li>
+          <li><a href="#events">Events</a></li>
+          <li><a href="#news">News &amp; Stories</a></li>
+          <li><a href="#careers">Careers</a></li>
+          <li><a href="#privacy">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+      <!-- Hours -->
+      <div class="footer-col">
+        <h4>Hours</h4>
+        <ul class="footer-hours" style="list-style:none;">
+          <li class="closed"><strong>Monday</strong><span>Closed</span></li>
+          <li><strong>Tue – Thu</strong><span>4:00 pm – 9:00 pm</span></li>
+          <li><strong>Friday</strong><span>4:00 pm – 10:00 pm</span></li>
+          <li><strong>Saturday</strong><span>11:00 am – 10:00 pm</span></li>
+          <li><strong>Sunday</strong><span>11:00 am – 9:00 pm</span></li>
+        </ul>
+        <p style="font-size:.8rem;color:var(--muted);margin-top:1rem;font-style:italic;">Happy hour varies — check with your server!</p>
+      </div>
+
     </div>
 
-    <!-- Bottom fine print -->
-    <div class="mt-12 text-center text-sm text-gray-400">
-      <p>Designed with ❤️ in Jacksonville | <a href="#privacy" class="hover:text-white transition-colors">Privacy Policy</a> | <a href="#terms" class="hover:text-white transition-colors">Terms of Service</a></p>
+    <div class="footer-bottom">
+      <p>© 2026 The Buoy. All Rights Reserved.</p>
+      <p>
+        <a href="#privacy" style="color:rgba(255,255,255,.3);margin-right:1.2rem;transition:color .2s;">Privacy Policy</a>
+        <a href="#terms"   style="color:rgba(255,255,255,.3);transition:color .2s;">Terms of Service</a>
+      </p>
     </div>
   </div>
 </footer>
 
-<!-- Swiper JS -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<!-- Back to top -->
+<button id="back-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+<!-- ═══════════════════════ SCRIPTS ═══════════════════════ -->
 <script>
-  const swiper = new Swiper('.news-carousel', {
-    slidesPerView: 1,
-    spaceBetween: 20,
-    navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
-    breakpoints: {
-      640: { slidesPerView: 2 },
-      1024: { slidesPerView: 3 },
-    }
+  /* ── Navbar scroll ── */
+  const navbar  = document.getElementById('navbar');
+  const backTop = document.getElementById('back-top');
+
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    navbar.classList.toggle('scrolled', y > 60);
+    backTop.classList.toggle('visible', y > 400);
+  }, { passive: true });
+
+  /* ── Hero video loaded ── */
+  const heroSection = document.getElementById('hero');
+  const heroVideo   = heroSection.querySelector('.hero-video');
+  const onVideoLoad = () => heroSection.classList.add('loaded');
+  if (heroVideo.readyState >= 2) onVideoLoad();
+  else heroVideo.addEventListener('loadeddata', onVideoLoad);
+  // Fallback: show after 1.5s regardless
+  setTimeout(() => heroSection.classList.add('loaded'), 1500);
+
+  /* ── Mobile nav ── */
+  const toggle = document.getElementById('nav-toggle');
+  const drawer = document.getElementById('nav-drawer');
+
+  toggle.addEventListener('click', () => {
+    const open = toggle.classList.toggle('open');
+    drawer.classList.toggle('open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
   });
-</script>
 
-<!-- AOS -->
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-  AOS.init({ duration: 800, once: true, easing: 'ease-out', offset: 120 });
-</script>
-
-<!-- Navbar scroll effect — uses inline styles to avoid compiled CSS dependency -->
-<script>
-  const navbar = document.getElementById('navbar');
-
-  function updateNavbar() {
-    if (window.scrollY > 80) {
-      navbar.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
-      navbar.style.backdropFilter = 'blur(12px)';
-      navbar.style.webkitBackdropFilter = 'blur(12px)';
-    } else {
-      navbar.style.backgroundColor = 'rgba(0, 0, 0, 0.95)';
-      navbar.style.backdropFilter = 'none';
-      navbar.style.webkitBackdropFilter = 'none';
-    }
+  function closeDrawer() {
+    toggle.classList.remove('open');
+    drawer.classList.remove('open');
+    document.body.style.overflow = '';
   }
 
-  window.addEventListener('scroll', updateNavbar);
-  updateNavbar();
+  /* ── Scroll reveal ── */
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer  = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  revealEls.forEach(el => observer.observe(el));
 </script>
-    <style>
-  @media (min-width: 768px) {
-    .md\:flex  { display: flex !important; }
-    .md\:hidden { display: none !important; }
-  }
-</style>
 
 </body>
 </html>
