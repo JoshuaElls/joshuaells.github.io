@@ -748,9 +748,210 @@
       section { padding: 3.5rem 0; }
       .hero-cta { flex-direction: column; align-items: center; }
     }
+
+    /* ─── COMING SOON MODAL ─────────────────────────────────── */
+    #cs-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9000;
+      background: rgba(0,0,0,.78);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      transition: opacity .45s ease;
+      pointer-events: none;
+    }
+    #cs-overlay.visible {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    #cs-modal {
+      background: var(--dark2);
+      border: 1px solid rgba(201,168,76,.2);
+      border-radius: 4px;
+      max-width: 520px;
+      width: 100%;
+      padding: 3rem 2.5rem;
+      position: relative;
+      text-align: center;
+      transform: translateY(20px);
+      transition: transform .45s ease;
+      box-shadow: 0 32px 80px rgba(0,0,0,.6);
+    }
+    #cs-overlay.visible #cs-modal {
+      transform: translateY(0);
+    }
+
+    #cs-close {
+      position: absolute;
+      top: 1rem; right: 1.2rem;
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 1.4rem;
+      cursor: pointer;
+      line-height: 1;
+      transition: color .2s;
+      padding: 4px;
+    }
+    #cs-close:hover { color: var(--white); }
+
+    .cs-anchor {
+      display: inline-block;
+      width: 40px;
+      height: 3px;
+      background: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+
+    .cs-eyebrow {
+      font-family: var(--font-cond);
+      font-weight: 700;
+      font-size: .72rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: .75rem;
+    }
+
+    .cs-title {
+      font-family: var(--font-cond);
+      font-weight: 900;
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: var(--white);
+      line-height: 1.05;
+      margin-bottom: 1rem;
+    }
+    .cs-title span { color: var(--red); }
+
+    .cs-body {
+      font-family: var(--font-body);
+      font-size: .98rem;
+      color: rgba(232,228,221,.7);
+      line-height: 1.7;
+      margin-bottom: 1.75rem;
+    }
+
+    .cs-form {
+      display: flex;
+      gap: .6rem;
+    }
+    @media (max-width: 480px) {
+      .cs-form { flex-direction: column; }
+      #cs-modal { padding: 2.2rem 1.5rem; }
+    }
+
+    .cs-input {
+      flex: 1;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 2px;
+      padding: .8rem 1rem;
+      font-family: var(--font-body);
+      font-size: .95rem;
+      color: var(--white);
+      outline: none;
+      transition: border-color .2s;
+    }
+    .cs-input::placeholder { color: rgba(255,255,255,.35); }
+    .cs-input:focus { border-color: var(--gold); }
+
+    .cs-submit {
+      font-family: var(--font-cond);
+      font-weight: 700;
+      font-size: .95rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      background: var(--red);
+      color: var(--white);
+      border: none;
+      border-radius: 2px;
+      padding: .8rem 1.6rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background .2s, transform .2s;
+    }
+    .cs-submit:hover { background: var(--red-dark); transform: translateY(-1px); }
+    .cs-submit:disabled { background: var(--muted); cursor: not-allowed; transform: none; }
+
+    .cs-success {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: .75rem;
+    }
+    .cs-success-icon {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      background: rgba(201,168,76,.15);
+      border: 2px solid var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: .25rem;
+    }
+    .cs-success p {
+      font-family: var(--font-body);
+      font-size: .95rem;
+      color: rgba(232,228,221,.75);
+      line-height: 1.6;
+    }
+    .cs-success strong { color: var(--gold); font-weight: 600; }
+
+    .cs-fine {
+      margin-top: 1.2rem;
+      font-size: .72rem;
+      color: rgba(255,255,255,.25);
+      font-family: var(--font-body);
+    }
   </style>
 </head>
 <body>
+
+<!-- ═══════════════════════ COMING SOON MODAL ═══════════════════════ -->
+<div id="cs-overlay" role="dialog" aria-modal="true" aria-labelledby="cs-title-text">
+  <div id="cs-modal">
+    <button id="cs-close" aria-label="Close">&times;</button>
+
+    <div class="cs-eyebrow">Coming Soon</div>
+    <div class="cs-anchor"></div>
+    <h2 class="cs-title" id="cs-title-text">We're Almost <span>Ready</span></h2>
+    <p class="cs-body">
+      The Buoy isn't open just yet — but something great is coming to Jacksonville.
+      Drop your email below and we'll keep you in the loop on our grand opening,
+      special events, and exclusive early access offers.
+    </p>
+
+    <!-- Form state -->
+    <div id="cs-form-wrap">
+      <form class="cs-form" id="cs-form" novalidate>
+        <input
+          class="cs-input"
+          type="email"
+          id="cs-email"
+          name="email"
+          placeholder="your@email.com"
+          required
+          autocomplete="email"
+        >
+        <button class="cs-submit" type="submit" id="cs-btn">Notify Me</button>
+      </form>
+      <p class="cs-fine">No spam, ever. Unsubscribe any time.</p>
+    </div>
+
+    <!-- Success state -->
+    <div class="cs-success" id="cs-success">
+      <div class="cs-success-icon">&#10003;</div>
+      <p><strong>You're on the list!</strong><br>We'll be in touch when The Buoy opens its doors.</p>
+    </div>
+  </div>
+</div>
 
 <!-- ═══════════════════════ NAVBAR ═══════════════════════ -->
 <nav id="navbar">
@@ -1098,6 +1299,74 @@
   }, { threshold: 0.12 });
 
   revealEls.forEach(el => observer.observe(el));
+
+  /* ── Coming Soon Modal ── */
+  (function () {
+    // ▶ PASTE YOUR GOOGLE APPS SCRIPT URL HERE (see setup instructions)
+    const APPS_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+
+    const overlay  = document.getElementById('cs-overlay');
+    const closeBtn = document.getElementById('cs-close');
+    const form     = document.getElementById('cs-form');
+    const btn      = document.getElementById('cs-btn');
+    const formWrap = document.getElementById('cs-form-wrap');
+    const success  = document.getElementById('cs-success');
+
+    // Don't show again if already signed up or dismissed this session
+    if (sessionStorage.getItem('cs-dismissed')) return;
+
+    function openModal() {
+      overlay.classList.add('visible');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      overlay.classList.remove('visible');
+      document.body.style.overflow = '';
+      sessionStorage.setItem('cs-dismissed', '1');
+    }
+
+    // Show after 2 seconds
+    setTimeout(openModal, 2000);
+
+    // Close on X or backdrop click
+    closeBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closeModal();
+    });
+
+    // Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && overlay.classList.contains('visible')) closeModal();
+    });
+
+    // Form submit
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('cs-email').value.trim();
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        document.getElementById('cs-email').focus();
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+
+      // Send to Google Apps Script (no-cors — data is saved even without a readable response)
+      fetch(`${APPS_SCRIPT_URL}?email=${encodeURIComponent(email)}`, { mode: 'no-cors' })
+        .catch(() => {}) // silence network errors — data already sent
+        .finally(() => {
+          formWrap.style.display = 'none';
+          success.style.display = 'flex';
+          localStorage.setItem('cs-subscribed', '1');
+          // Auto-close after 3.5s
+          setTimeout(closeModal, 3500);
+        });
+    });
+
+    // Never show again after subscribing
+    if (localStorage.getItem('cs-subscribed')) return;
+  })();
 </script>
 
 </body>
