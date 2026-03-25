@@ -4,6 +4,67 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Buoy — Seafood Bar & Grille | Jacksonville, FL</title>
+
+  <!-- ─── SEO ─────────────────────────────────────────────── -->
+  <meta name="description" content="The Buoy is Jacksonville's newest seafood bar and grille — fresh catches, craft cocktails, and coastal vibes at 4323 Herschel St. Opening 2025.">
+  <meta name="keywords" content="seafood restaurant Jacksonville FL, seafood bar grille, The Buoy Jacksonville, fresh seafood, Herschel Street dining, Jacksonville restaurants">
+  <meta name="author" content="The Buoy">
+  <link rel="canonical" href="https://joshuaells.github.io/">
+
+  <!-- ─── OPEN GRAPH (Facebook, iMessage, Slack, etc.) ───── -->
+  <meta property="og:type"        content="restaurant">
+  <meta property="og:url"         content="https://joshuaells.github.io/">
+  <meta property="og:title"       content="The Buoy — Seafood Bar & Grille | Jacksonville, FL">
+  <meta property="og:description" content="Fresh catches, craft cocktails, and coastal vibes. Opening soon at 4323 Herschel St, Jacksonville, FL.">
+  <meta property="og:image"       content="https://joshuaells.github.io/assets/images/og-image.jpg">
+  <meta property="og:image:width"  content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt"   content="The Buoy interior — seafood bar and grille, Jacksonville FL">
+  <meta property="og:locale"      content="en_US">
+  <meta property="og:site_name"   content="The Buoy">
+
+  <!-- ─── TWITTER / X CARD ────────────────────────────────── -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="The Buoy — Seafood Bar & Grille | Jacksonville, FL">
+  <meta name="twitter:description" content="Fresh catches, craft cocktails, and coastal vibes. Opening soon at 4323 Herschel St, Jacksonville, FL.">
+  <meta name="twitter:image"       content="https://joshuaells.github.io/assets/images/og-image.jpg">
+  <meta name="twitter:image:alt"   content="The Buoy interior — seafood bar and grille, Jacksonville FL">
+
+  <!-- ─── FAVICON ─────────────────────────────────────────── -->
+  <link rel="icon" type="image/png" href="assets/images/mainpg/bfav.png">
+  <link rel="apple-touch-icon"      href="assets/images/mainpg/bfav.png">
+
+  <!-- ─── STRUCTURED DATA (Google rich results) ───────────── -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "The Buoy",
+    "description": "Seafood Bar & Grille opening in Jacksonville, FL. Fresh catches, craft cocktails, and coastal vibes.",
+    "url": "https://joshuaells.github.io/",
+    "telephone": "",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "4323 Herschel St",
+      "addressLocality": "Jacksonville",
+      "addressRegion": "FL",
+      "postalCode": "32210",
+      "addressCountry": "US"
+    },
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Tuesday",   "opens": "16:00", "closes": "21:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Wednesday", "opens": "16:00", "closes": "21:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Thursday",  "opens": "16:00", "closes": "21:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday",    "opens": "16:00", "closes": "22:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday",  "opens": "11:00", "closes": "22:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday",    "opens": "11:00", "closes": "21:00" }
+    ],
+    "servesCuisine": "Seafood",
+    "priceRange": "$$",
+    "image": "https://joshuaells.github.io/assets/images/og-image.jpg"
+  }
+  </script>
+
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
@@ -1352,16 +1413,22 @@
       btn.disabled = true;
       btn.textContent = 'Sending…';
 
-      // Send to Google Apps Script (no-cors — data is saved even without a readable response)
-      fetch(`${APPS_SCRIPT_URL}?email=${encodeURIComponent(email)}`, { mode: 'no-cors' })
-        .catch(() => {}) // silence network errors — data already sent
-        .finally(() => {
-          formWrap.style.display = 'none';
-          success.style.display = 'flex';
-          localStorage.setItem('cs-subscribed', '1');
-          // Auto-close after 3.5s
-          setTimeout(closeModal, 3500);
-        });
+      // Image beacon — bypasses CORS and follows Google's redirects reliably
+      const beacon = new Image();
+      beacon.src = `${APPS_SCRIPT_URL}?email=${encodeURIComponent(email)}&t=${Date.now()}`;
+      beacon.onload = beacon.onerror = showSuccess;
+      // Fallback: show success after 4s regardless
+      const fallback = setTimeout(showSuccess, 4000);
+
+      function showSuccess() {
+        clearTimeout(fallback);
+        beacon.onload = beacon.onerror = null;
+        if (formWrap.style.display === 'none') return; // already ran
+        formWrap.style.display = 'none';
+        success.style.display = 'flex';
+        localStorage.setItem('cs-subscribed', '1');
+        setTimeout(closeModal, 3500);
+      }
     });
 
     // Never show again after subscribing
